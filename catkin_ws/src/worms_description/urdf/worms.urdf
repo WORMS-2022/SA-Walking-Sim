@@ -12,18 +12,18 @@
   </joint>
   <link name="MP_BODY">
     <inertial>
-      <origin xyz="0 0 0"/>
+      <origin xyz="0 0 0.25"/>
       <mass value="0.97559947"/>
-      <inertia ixx="3.1081800" ixy="-0.25460189" ixz="2.0318174" iyy="6.3787776" iyz="0.16417863" izz="5.3316425"/>
+      <inertia ixx="0.000300" ixy="-0.0" ixz="0.0" iyy="0.000424" iyz="0.0" izz="0.000724"/>
     </inertial>
     <visual>
       <!--origin xyz="-0.0235 0 -0.03525" rpy="0 0 0" /-->
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0.0" xyz="0 0 0.25"/>
       <geometry>
         <!--box size="0.102 0.109 0.106" /-->
         <mesh filename="package://worms_description/meshes/Pallet.stl" scale="1 1 1"/>
       </geometry>
-      <material name="Grey">
+      <material name="Red">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
@@ -35,7 +35,7 @@
     </collision>
   </link>
   <gazebo reference="MP_BODY">
-    <material>Gazebo/Grey</material>
+    <material>Gazebo/Red</material>
   </gazebo>
   <link name="c1_rf">
     <inertial>
