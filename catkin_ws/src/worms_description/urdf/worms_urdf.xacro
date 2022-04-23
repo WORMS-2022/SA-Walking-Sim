@@ -7,10 +7,10 @@
 
 
 
-<xacro:macro name="phantomx" params="parent *origin">
+<xacro:macro name="worms" params="parent *origin">
 
 
-      <joint name="j_phantomx_attachment" type="fixed">
+      <joint name="j_worms_attachment" type="fixed">
         <parent link="${parent}"/>
         <child link="MP_BODY"/>
         <insert_block name="origin" />
@@ -28,7 +28,7 @@
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
             <!--box size="0.102 0.109 0.106" /-->
-            <mesh filename="package://phantomx_description/meshes/body.STL"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/body.STL"  scale="1 1 1"/>
           </geometry>
           <material name="Grey">
             <color rgba="0.20 0.20 0.20 1.0"/>
@@ -37,7 +37,7 @@
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://phantomx_description/meshes/body_coll.STL"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/body_coll.STL"  scale="1 1 1"/>
           </geometry>
 
         </collision>
@@ -78,7 +78,7 @@
       <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://phantomx_description/meshes/connect.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/connect.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -87,7 +87,7 @@
     <collision>
       <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://phantomx_description/meshes/connect_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/connect_coll.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -103,7 +103,7 @@
       <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://phantomx_description/meshes/connect.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/connect.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -112,7 +112,7 @@
     <collision>
       <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://phantomx_description/meshes/connect_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/connect_coll.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -129,7 +129,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://phantomx_description/meshes/thigh_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -138,7 +138,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://phantomx_description/meshes/thigh_l_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh_l_coll.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -155,7 +155,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://phantomx_description/meshes/tibia_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/tibia_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -164,7 +164,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://phantomx_description/meshes/tibia_l_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/tibia_l_coll.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
