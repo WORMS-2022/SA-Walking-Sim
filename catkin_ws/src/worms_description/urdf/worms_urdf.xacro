@@ -20,7 +20,8 @@
       <link name="MP_BODY">
         <inertial>
           <origin xyz="0 0 0" />
-          <mass value="0.97559947"/>
+          <!-- <mass value="0.97559947"/> -->
+          <mass value="0.01"/>
           <inertia ixx="3.1081800"  ixy="-0.25460189"  ixz="2.0318174" iyy="6.3787776" iyz="0.16417863" izz="5.3316425" />
         </inertial>
         <visual>
@@ -37,7 +38,7 @@
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://worms_description/meshes/body_coll.STL"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/Pallet.stl"  scale="1 1 1"/>
           </geometry>
 
         </collision>
@@ -49,14 +50,14 @@
       </gazebo>
 
 
-    <xacro:leg_l xyz="0.1248 -0.06164  0.001116"  rpy="0 4.7123 0.7853981633974483" suffix="rf"/>
-    <xacro:leg_l xyz="0 -0.1034  0.001116"  rpy="0 4.7123 0" suffix="rm"/>
-    <xacro:leg_l xyz="-0.1248 -0.06164  0.001116"  rpy="0 4.7123 -0.7853981633974483" suffix="rr"/>
+    <xacro:leg_l xyz="0.1248 -0.3175 0.001116"  rpy="0 4.7123 0.7853981633974483" suffix="rf"/>
+    <xacro:leg_l xyz="0 -0.3175  0.001116"  rpy="0 4.7123 0" suffix="rm"/>
+    <xacro:leg_l xyz="-0.1248 -0.3175  0.001116"  rpy="0 4.7123 -0.7853981633974483" suffix="rr"/>
 
 
-    <xacro:leg_l xyz="0.1248 0.06164  0.001116"  rpy="0 4.7123 2.356194490192345" suffix="lf"/>
-    <xacro:leg_l xyz="0 0.1034  0.001116"  rpy="0 4.7123 3.14159" suffix="lm"/>
-    <xacro:leg_l xyz="-0.1248 0.06164  0.001116"  rpy="0 4.7123 3.9269908169872414" suffix="lr"/>
+    <xacro:leg_l xyz="0.1248 0.3175 0.001116"  rpy="0 4.7123 2.356194490192345" suffix="lf"/>
+    <xacro:leg_l xyz="0 0.3175  0.001116"  rpy="0 4.7123 3.14159" suffix="lm"/>
+    <xacro:leg_l xyz="-0.1248 0.3175  0.001116"  rpy="0 4.7123 3.9269908169872414" suffix="lr"/>
 
 </xacro:macro>
 
