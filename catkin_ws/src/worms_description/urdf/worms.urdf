@@ -12,14 +12,14 @@
   </joint>
   <link name="MP_BODY">
     <inertial>
-      <origin xyz="0 0 0"/>
+      <origin rpy="0 0 1.57" xyz="0 0 0"/>
       <!-- <mass value="0.97559947"/> -->
       <mass value="0.01"/>
       <inertia ixx="3.1081800" ixy="-0.25460189" ixz="2.0318174" iyy="6.3787776" iyz="0.16417863" izz="5.3316425"/>
     </inertial>
     <visual>
       <!--origin xyz="-0.0235 0 -0.03525" rpy="0 0 0" /-->
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 1.57" xyz="0 0 0"/>
       <geometry>
         <!--box size="0.102 0.109 0.106" /-->
         <mesh filename="package://worms_description/meshes/pallet.STL" scale="1 1 1"/>
@@ -38,14 +38,14 @@
   <gazebo reference="MP_BODY">
     <material>Gazebo/Red</material>
   </gazebo>
-  <link name="c1_rf">
+  <link name="uib_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -55,15 +55,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_rf">
+  <link name="ee_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -78,134 +78,181 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_rf">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_rf">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_rf" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_rf" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_rf"/>
-    <origin rpy="0 4.7123 0.7853981633974483" xyz="0.1248 -0.3175 0.001116"/>
+    <child link="uib_rf"/>
+    <origin rpy="0 0 1.05" xyz="0.4330 -0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_rf" type="fixed">
-    <parent link="c1_rf"/>
-    <child link="c2_rf"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_rf" type="revolute">
-    <parent link="c2_rf"/>
-    <child link="thigh_rf"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_rf" type="fixed">
+    <parent link="uib_rf"/>
+    <child link="ee_rf"/>
+    <origin rpy="0 0 1.05" xyz="0.4330 -0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_rf" type="revolute">
-    <parent link="thigh_rf"/>
-    <child link="tibia_rf"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_rf">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_rf">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_rf">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_rf">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_rf">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_rf">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_rf">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_rf">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_rf">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_rf">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_rf">
+  <gazebo reference="ee_rf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_rf">
+  <gazebo reference="shin_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <link name="c1_rm">
+  <link name="uib_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -215,15 +262,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_rm">
+  <link name="ee_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -238,134 +285,181 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_rm">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_rm">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_rm" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_rm" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_rm"/>
-    <origin rpy="0 4.7123 0" xyz="0 -0.3175  0.001116"/>
+    <child link="uib_rm"/>
+    <origin rpy="0 0 0.0" xyz="0.0000 -0.5000 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_rm" type="fixed">
-    <parent link="c1_rm"/>
-    <child link="c2_rm"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_rm" type="revolute">
-    <parent link="c2_rm"/>
-    <child link="thigh_rm"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_rm" type="fixed">
+    <parent link="uib_rm"/>
+    <child link="ee_rm"/>
+    <origin rpy="0 0 0.0" xyz="0.0000 -0.5000 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_rm" type="revolute">
-    <parent link="thigh_rm"/>
-    <child link="tibia_rm"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_rm">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_rm">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_rm">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_rm">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_rm">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_rm">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_rm">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_rm">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_rm">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_rm">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_rm">
+  <gazebo reference="ee_rm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_rm">
+  <gazebo reference="shin_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <link name="c1_rr">
+  <link name="uib_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -375,15 +469,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_rr">
+  <link name="ee_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -398,134 +492,181 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_rr">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_rr">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_rr" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_rr" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_rr"/>
-    <origin rpy="0 4.7123 -0.7853981633974483" xyz="-0.1248 -0.3175  0.001116"/>
+    <child link="uib_rr"/>
+    <origin rpy="0 0 -1.0400000000000003" xyz="-0.4330 -0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_rr" type="fixed">
-    <parent link="c1_rr"/>
-    <child link="c2_rr"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_rr" type="revolute">
-    <parent link="c2_rr"/>
-    <child link="thigh_rr"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_rr" type="fixed">
+    <parent link="uib_rr"/>
+    <child link="ee_rr"/>
+    <origin rpy="0 0 -1.0400000000000003" xyz="-0.4330 -0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_rr" type="revolute">
-    <parent link="thigh_rr"/>
-    <child link="tibia_rr"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_rr">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_rr">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_rr">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_rr">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_rr">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_rr">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_rr">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_rr">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_rr">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_rr">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_rr">
+  <gazebo reference="ee_rr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_rr">
+  <gazebo reference="shin_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <link name="c1_lf">
+  <link name="uib_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -535,15 +676,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_lf">
+  <link name="ee_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -558,134 +699,181 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_lf">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_lf">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_lf" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_lf" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_lf"/>
-    <origin rpy="0 4.7123 2.356194490192345" xyz="0.1248 0.3175 0.001116"/>
+    <child link="uib_lf"/>
+    <origin rpy="0 0 2.09" xyz="0.4330 0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_lf" type="fixed">
-    <parent link="c1_lf"/>
-    <child link="c2_lf"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_lf" type="revolute">
-    <parent link="c2_lf"/>
-    <child link="thigh_lf"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_lf" type="fixed">
+    <parent link="uib_lf"/>
+    <child link="ee_lf"/>
+    <origin rpy="0 0 2.09" xyz="0.4330 0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_lf" type="revolute">
-    <parent link="thigh_lf"/>
-    <child link="tibia_lf"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_lf">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_lf">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_lf">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_lf">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_lf">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_lf">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_lf">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_lf">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_lf">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_lf">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_lf">
+  <gazebo reference="ee_lf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_lf">
+  <gazebo reference="shin_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <link name="c1_lm">
+  <link name="uib_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -695,15 +883,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_lm">
+  <link name="ee_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -718,134 +906,181 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_lm">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_lm">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_lm" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_lm" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_lm"/>
-    <origin rpy="0 4.7123 3.14159" xyz="0 0.3175  0.001116"/>
+    <child link="uib_lm"/>
+    <origin rpy="0 0 3.14" xyz="0.0000 0.5000 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_lm" type="fixed">
-    <parent link="c1_lm"/>
-    <child link="c2_lm"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_lm" type="revolute">
-    <parent link="c2_lm"/>
-    <child link="thigh_lm"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_lm" type="fixed">
+    <parent link="uib_lm"/>
+    <child link="ee_lm"/>
+    <origin rpy="0 0 3.14" xyz="0.0000 0.5000 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_lm" type="revolute">
-    <parent link="thigh_lm"/>
-    <child link="tibia_lm"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_lm">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_lm">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_lm">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_lm">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_lm">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_lm">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_lm">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_lm">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_lm">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_lm">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_lm">
+  <gazebo reference="ee_lm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_lm">
+  <gazebo reference="shin_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <link name="c1_lr">
+  <link name="uib_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 -0.0252 0"/>
+      <origin rpy="0 0 0" xyz="2 0 0"/>
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
@@ -855,15 +1090,15 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="c2_lr">
+  <link name="ee_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <mass value="0.024357719"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
@@ -878,124 +1113,171 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.02633 0"/>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/end_effector.STL" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="thigh_lr">
+  <!-- <link name="coxa_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <link name="tibia_lr">
+
+
+  <link name="thigh_${suffix}">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
-      <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="j_c1_lr" type="revolute">
+
+
+
+  <link name="shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="0.024357719"/>
+     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> -->
+  <!-- Joint definitions -->
+  <joint name="j_uib_lr" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="c1_lr"/>
-    <origin rpy="0 4.7123 3.9269908169872414" xyz="-0.1248 0.3175  0.001116"/>
+    <child link="uib_lr"/>
+    <origin rpy="0 0 4.180000000000001" xyz="-0.4330 0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_c2_lr" type="fixed">
-    <parent link="c1_lr"/>
-    <child link="c2_lr"/>
-    <origin rpy="0 1.5704 3.14159" xyz="0 -0.054 0"/>
-  </joint>
-  <joint name="j_thigh_lr" type="revolute">
-    <parent link="c2_lr"/>
-    <child link="thigh_lr"/>
-    <origin rpy=" 0 3.14159 3.14159" xyz="0 0 0"/>
+  <joint name="j_ee_lr" type="fixed">
+    <parent link="uib_lr"/>
+    <child link="ee_lr"/>
+    <origin rpy="0 0 4.180000000000001" xyz="-0.4330 0.2500 0.0000"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
-  <joint name="j_tibia_lr" type="revolute">
-    <parent link="thigh_lr"/>
-    <child link="tibia_lr"/>
-    <origin rpy="-1.5707 0 3.14159" xyz="0 -0.0645 -0.0145"/>
-    <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+  <!-- <joint name="j_coxa_${suffix}" type="revolute">
+    <parent link="ee_${suffix}"/>
+    <child link="coxa_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
-  <transmission name="t_c1_lr">
+
+
+  <joint name="j_thigh_${suffix}" type="revolute">
+    <parent link="coxa_${suffix}"/>
+    <child link="thigh_${suffix}"/>
+    <origin xyz="0 0 0" rpy=" 0 3.14159 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shin_${suffix}" type="revolute">
+    <parent link="thigh_${suffix}"/>
+    <child link="shin_${suffix}"/>
+    <origin xyz="0 ${thigh_offset_y} ${thigh_offset_z}" rpy="-1.5707 0 3.14159" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint> -->
+  <!-- Joint transmission definitions -->
+  <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_c1_lr">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_c1_lr">
+    <actuator name="m_coxa_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_thigh_lr">
+
+
+   <transmission name="t_thigh_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_thigh_lr">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
     </joint>
-    <actuator name="m_thigh_lr">
+    <actuator name="m_thigh_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="t_tibia_lr">
+
+
+   <transmission name="t_shin_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_tibia_lr">
+    <joint name="j_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="m_tibia_lr">
+    <actuator name="m_shin_${suffix}">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
-  <gazebo reference="c1_lr">
+  </transmission> -->
+  <!-- Gazebo material definitions -->
+  <gazebo reference="uib_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="c2_lr">
+  <gazebo reference="ee_lr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="coxa_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="thigh_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
-  <gazebo reference="tibia_lr">
+  <gazebo reference="shin_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo>
