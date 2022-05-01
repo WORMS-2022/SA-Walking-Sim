@@ -29,7 +29,7 @@
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
             <!--box size="0.102 0.109 0.106" /-->
-            <mesh filename="package://worms_description/meshes/Pallet.stl"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/pallet.stl"  scale="1 1 1"/>
           </geometry>
           <material name="Red">
             <color rgba="0.2 0.2 0.2 1.0"/>
@@ -38,7 +38,7 @@
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://worms_description/meshes/Pallet.stl"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/pallet_coll.stl"  scale="1 1 1"/>
           </geometry>
 
         </collision>
@@ -79,7 +79,7 @@
       <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/connect.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/UIB.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -88,7 +88,7 @@
     <collision>
       <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/connect_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/UIB.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -104,7 +104,7 @@
       <origin xyz="0 -0.0252 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/connect.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/end_effector.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -113,7 +113,7 @@
     <collision>
       <origin xyz="0 -${connect_offset} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/connect_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/end_effector.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -130,7 +130,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/thigh_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -139,7 +139,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh_l_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -156,7 +156,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://worms_description/meshes/tibia_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -165,7 +165,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/tibia_l_coll.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
