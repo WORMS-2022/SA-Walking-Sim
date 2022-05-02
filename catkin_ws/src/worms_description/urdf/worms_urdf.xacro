@@ -73,7 +73,7 @@
 
 
 
-
+<!-- Leg generation sub-macro -->
 
  <xacro:macro name="leg_l" params="xyz rpy suffix">
 

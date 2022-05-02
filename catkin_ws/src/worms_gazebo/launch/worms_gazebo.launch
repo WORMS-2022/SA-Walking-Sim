@@ -12,7 +12,7 @@
 
 
  
- <include file="$(find phantomx_control)/launch/phantomx_control.launch"/> 
+ <include file="$(find worms_control)/launch/worms_control.launch"/> 
 
 
   <node name="worms_walker" pkg="worms_gazebo" type="walker.py" />

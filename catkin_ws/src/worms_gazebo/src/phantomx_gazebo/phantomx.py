@@ -8,7 +8,7 @@ from std_msgs.msg import Float64
 class PhantomX:
     """Client ROS class for manipulating PhantomX in Gazebo"""
 
-    def __init__(self, ns='/phantomx/'):
+    def __init__(self, ns='/worms/'):
         self.ns = ns
         self.joints = None
         self.angles = None
