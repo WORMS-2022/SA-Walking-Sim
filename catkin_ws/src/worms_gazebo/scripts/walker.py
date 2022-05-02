@@ -3,7 +3,7 @@
 from threading import Thread
 import rospy
 import math
-from worms_gazebo.phantomx import PhantomX
+from worms_gazebo.worms_hexapod import WORMS_Hexapod
 from geometry_msgs.msg import Twist
 
 
@@ -17,7 +17,7 @@ for j in jleg:
             z = j + "_" + side + s
             joints.append(z)
 
-phantomx_joints = joints
+hexapod_joints = joints
 
 
 class WJFunc:
@@ -65,7 +65,7 @@ class WFunc:
         for k, v in kwargs.items():
             self.parameters[k] = v
 
-        self.joints = phantomx_joints
+        self.joints = hexapod_joints
         self.generate()
 
     def generate(self):
@@ -196,7 +196,7 @@ class WFunc:
 
 
 class Walker:
-    """Class for making PhantomX walk"""
+    """Class for making a WORMS Hexapod walk"""
     def __init__(self, darwin):
         self.darwin = darwin
         self.running = False
@@ -336,7 +336,7 @@ if __name__ == '__main__':
     rospy.sleep(1)
 
     rospy.loginfo('Instantiating Robot Client')
-    robot = PhantomX()
+    robot = WORMS_Hexapod()
     rospy.loginfo('Instantiating Robot Walker')
     walker = Walker(robot)
 

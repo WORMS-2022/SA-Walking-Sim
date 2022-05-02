@@ -1,14 +1,14 @@
 #!/usr/bin/python3.8
 
 import rospy
-from phantomx_gazebo.phantomx import PhantomX
+from worms_gazebo.worms_hexapod import WORMS_Hexapod
 
 
 if __name__ == '__main__':
     rospy.init_node('walker_demo')
 
     rospy.loginfo('Instantiating robot Client')
-    robot = PhantomX()
+    robot = WORMS_Hexapod()
     rospy.sleep(1)
 
     rospy.loginfo('Walk in x-dir Starting')

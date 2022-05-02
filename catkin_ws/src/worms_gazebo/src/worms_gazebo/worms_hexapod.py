@@ -5,8 +5,8 @@ from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 
 
-class PhantomX:
-    """Client ROS class for manipulating PhantomX in Gazebo"""
+class WORMS_Hexapod:
+    """Client ROS class for manipulating WORMS Hexapod in Gazebo"""
 
     def __init__(self, ns='/worms/'):
         self.ns = ns
