@@ -1,7 +1,7 @@
 #!/usr/bin/python3.8
 
 import rospy
-from phantomx_gazebo.phantomx import PhantomX
+from worms_gazebo.phantomx import PhantomX
 
 
 if __name__ == '__main__':

@@ -42,6 +42,7 @@ class PhantomX:
         self._pub_cmd_vel.publish(msg)
 
     def _cb_joints(self, msg):
+        rospy.loginfo('Joint States callback!')
         if self.joints is None:
             self.joints = msg.name
         self.angles = msg.position

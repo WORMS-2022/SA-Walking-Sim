@@ -3,7 +3,7 @@
 from threading import Thread
 import rospy
 import math
-from phantomx_gazebo.phantomx import PhantomX
+from worms_gazebo.phantomx import PhantomX
 from geometry_msgs.msg import Twist
 
 
