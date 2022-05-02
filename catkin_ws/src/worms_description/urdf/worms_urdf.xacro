@@ -14,7 +14,7 @@
 <xacro:property name="thigh_offset_z" value="-0.0145" /> -->
 
 <!-- TODO: Update component masses and inertias -->
-<!-- TODO: Merge motor mesh into individual link meshes (coxa, thigh, shin) -->
+<!-- TODO: Add second ee, uib, and shoe -->
 
 
 <xacro:macro name="worms" params="parent *origin">
@@ -126,23 +126,23 @@
 
   <link name="coxa_${suffix}">
     <inertial>
-      <origin xyz="0 -${coxa_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin xyz="0 -${coxa_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 -${coxa_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/coxa.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -150,23 +150,23 @@
 
   <link name="thigh_${suffix}">
     <inertial>
-      <origin xyz="0 -${thigh_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin xyz="0 -${thigh_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 -${thigh_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/thigh.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -174,23 +174,23 @@
 
   <link name="shin_${suffix}">
     <inertial>
-      <origin xyz="0 -${shin_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <mass value="0.024357719"/>
      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
-      <origin xyz="0 -${shin_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 -${shin_length/2} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/shin.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -216,8 +216,8 @@
   <joint name="j_coxa_${suffix}" type="revolute">
     <parent link="ee_${suffix}"/>
     <child link="coxa_${suffix}"/>
-    <origin xyz="0 -${ee_length + motor_diameter} 0" rpy="0.785398 0 0" />
-    <axis xyz="1 0 0" />
+    <origin xyz="0 -${ee_length + motor_diameter/2} 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
@@ -225,7 +225,7 @@
   <joint name="j_thigh_${suffix}" type="revolute">
     <parent link="coxa_${suffix}"/>
     <child link="thigh_${suffix}"/>
-    <origin xyz="0 -${coxa_length + motor_diameter} 0" rpy="0 0 0" />
+    <origin xyz="0 -${coxa_length + motor_diameter} 0" rpy="0.785 0 0" />
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
@@ -233,7 +233,7 @@
   <joint name="j_shin_${suffix}" type="revolute">
     <parent link="thigh_${suffix}"/>
     <child link="shin_${suffix}"/>
-    <origin xyz="0 -${thigh_length + motor_diameter} 0" rpy="0.785398 0 0" />
+    <origin xyz="0 -${thigh_length + motor_diameter} 0" rpy="0.785 0 0" />
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
