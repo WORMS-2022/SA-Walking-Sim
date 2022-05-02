@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64
 
-pub_cmd_vel = rospy.Publisher('/phantomx/cmd_vel', Twist, queue_size=1)
+pub_cmd_vel = rospy.Publisher('/worms/cmd_vel', Twist, queue_size=1)
 
 def stop_robot():
         msg = Twist()

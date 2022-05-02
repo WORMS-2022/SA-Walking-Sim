@@ -8,6 +8,7 @@
 <xacro:property name="thigh_offset_z" value="-0.0145" /> -->
   <!-- TODO: Update component masses and inertias -->
   <!-- TODO: Add second ee, uib, and shoe -->
+  <!-- Leg generation sub-macro -->
   <link name="base_link"/>
   <joint name="j_worms_attachment" type="fixed">
     <parent link="base_link"/>
@@ -1201,7 +1202,7 @@
   </gazebo>
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>/worms</robotNamespace>
+      <robotNamespace>/worms/</robotNamespace>
     </plugin>
   </gazebo>
 </robot>
