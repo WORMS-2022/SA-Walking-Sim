@@ -69,9 +69,9 @@ class WFunc:
         self.generate()
 
     def generate(self):
-        # f1=THIGH1=ANKLE1=L=R in phase
-        self.pfn = {}  # phase joint functions
-        self.afn = {}  # anti phase joint functions
+        self.pfn_1 = {}  # phase 1 joint functions
+        self.pfn_2 = {}  # phase 2 joint functions
+        self.pfn_3 = {}  # phase 3 joint functions
 
         f1 = WJFunc()
         f1.in_scale = math.pi
@@ -95,16 +95,26 @@ class WFunc:
 
         self.show()
 
+    # TODO: Refactor inputs fp, fa to include phases 1-3
+    # TODO: Refactor for easier change of leg sequencing
     def set_func(self, joint, fp, fa):
-        for leg in ['lf', 'rm', 'lr']:
+        for leg in ['lf', 'rf']:
             j = joint + '_' + leg
-            self.pfn[j] = fp
-            self.afn[j] = fa
+            self.pfn_1[j] = fp
+            self.pfn_2[j] = fa
+            self.pfn_3[j] = fa
 
-        for leg in ['rf', 'lm', 'rr']:
+        for leg in ['lm', 'rm']:
             j = joint + '_' + leg
-            self.pfn[j] = fa
-            self.afn[j] = fp
+            self.pfn_1[j] = fa
+            self.pfn_2[j] = fp
+            self.pfn_3[j] = fa
+
+        for leg in ['lr', 'rr']:
+            j = joint + '_' + leg
+            self.pfn_1[j] = fa
+            self.pfn_2[j] = fa
+            self.pfn_3[j] = fp
 
     # def generate_right(self):
     #     # Mirror from left to right and antiphase right
@@ -113,21 +123,31 @@ class WFunc:
     #         self.pfn[j+"_r"]=self.afn[j+"_l"].mirror()
     #         self.afn[j+"_r"]=self.pfn[j+"_l"].mirror()
 
-    def get(self, phase, x, velocity):
+    def get(self, state, x, velocity):
         """x between 0 and 1"""
         angles = {}
-        for j in self.pfn.keys():
-            if phase:
-                v = self.pfn[j].get(x)
+        for j in self.pfn_1.keys():
+            if state == 0:
+                v = self.pfn_1[j].get(x)
                 angles[j] = v
+            elif state == 1:
+                angles[j] = self.pfn_2[j].get(x)
             else:
-                angles[j] = self.afn[j].get(x)
-        self.apply_velocity(angles, velocity, phase, x)
+                angles[j] = self.pfn_3[j].get(x)
+
+        self.apply_velocity(angles, velocity, state, x)
         return angles
 
     def show(self):
-        for j in self.pfn.keys():
-            print(j, 'p', self.pfn[j], 'a', self.afn[j])
+        for j in self.pfn_1.keys():
+            print(j, 'p1', self.pfn_1[j])
+
+        for j in self.pfn_2.keys():
+            print(j, 'p2', self.pfn_2[j])
+
+        for j in self.pfn_3.keys():
+            print(j, 'p3', self.pfn_3[j])
+
 
     def apply_velocity(self, angles, velocity, phase, x):
         pass
@@ -213,6 +233,8 @@ class Walker:
         self._sub_cmd_vel = rospy.Subscriber(
             darwin.ns + "cmd_vel", Twist, self._cb_cmd_vel, queue_size=1)
 
+        # self.gait_state = None
+
     def _cb_cmd_vel(self, msg):
         """Catches cmd_vel and update walker speed"""
         print('cmdvel', msg)
@@ -259,7 +281,7 @@ class Walker:
 
         # Global walk loop
         n = 50
-        p = True
+        gait_state = 0
         i = 0
         self.current_velocity = [0, 0, 0]
         while (not rospy.is_shutdown() and
@@ -272,13 +294,13 @@ class Walker:
                 r.sleep()
                 continue
             x = float(i) / n
-            angles = func.get(p, x, self.current_velocity)
+            angles = func.get(gait_state, x, self.current_velocity)
             self.update_velocity(self.velocity, n)
             self.darwin.set_angles(angles)
             i += 1
             if i > n:
                 i = 0
-                p = not p
+                gait_state = (gait_state + 1) % 3 # transition to next state (AKA phase)
             r.sleep()
         rospy.loginfo('Finished walking thread')
 

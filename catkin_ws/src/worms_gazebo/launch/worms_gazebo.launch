@@ -2,7 +2,8 @@
 
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find worms_gazebo)/worlds/ramp1.world"/>
+    <arg name="world_name" value="$(find worms_gazebo)/worlds/empty.world"/>
+    <!-- <arg name="world_name" value="$(find worms_gazebo)/worlds/ramp1.world"/> -->
     <arg name="paused" value="true"/>
   </include>
   
