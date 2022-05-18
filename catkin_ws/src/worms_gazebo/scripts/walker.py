@@ -149,25 +149,32 @@ class WFunc:
             print(j, 'p3', self.pfn_3[j])
 
 
-    def apply_velocity(self, angles, velocity, phase, x):
+    def apply_velocity(self, angles, velocity, state, x):
         pass
 
-        # VX
+        # VX - L forward-moving limbs are -d, R forward-moving limbs are +d
         v = velocity[0] * self.parameters['vx_scale']
         d = (x * 2 - 1) * v
-        if phase:
+        if state == 0:
             angles['j_coxa_lf'] -= d
-            angles['j_coxa_rm'] += d
-            angles['j_coxa_lr'] -= d
-            angles['j_coxa_rf'] -= d
+            angles['j_coxa_rm'] -= d
+            angles['j_coxa_lr'] += d
+            angles['j_coxa_rf'] += d
             angles['j_coxa_lm'] += d
+            angles['j_coxa_rr'] -= d
+        elif state == 1:
+            angles['j_coxa_lf'] += d
+            angles['j_coxa_rm'] += d
+            angles['j_coxa_lr'] += d
+            angles['j_coxa_rf'] -= d
+            angles['j_coxa_lm'] -= d
             angles['j_coxa_rr'] -= d
         else:
             angles['j_coxa_lf'] += d
             angles['j_coxa_rm'] -= d
-            angles['j_coxa_lr'] += d
-            angles['j_coxa_rf'] += d
-            angles['j_coxa_lm'] -= d
+            angles['j_coxa_lr'] -= d
+            angles['j_coxa_rf'] -= d
+            angles['j_coxa_lm'] += d
             angles['j_coxa_rr'] += d
 
         # VY
@@ -200,19 +207,27 @@ class WFunc:
         # VT
         v = velocity[2] * self.parameters['vt_scale']
         d = (x * 2 - 1) * v
-        if phase:
-            angles['j_coxa_lf'] += d
+        if state == 0:
+            angles['j_coxa_lf'] -= d
             angles['j_coxa_rm'] += d
-            angles['j_coxa_lr'] += d
+            angles['j_coxa_lr'] -= d
             angles['j_coxa_rf'] -= d
-            angles['j_coxa_lm'] -= d
+            angles['j_coxa_lm'] += d
+            angles['j_coxa_rr'] -= d
+        elif state == 1:
+            angles['j_coxa_lf'] -= d
+            angles['j_coxa_rm'] += d
+            angles['j_coxa_lr'] -= d
+            angles['j_coxa_rf'] -= d
+            angles['j_coxa_lm'] += d
             angles['j_coxa_rr'] -= d
         else:
-            angles['j_coxa_lf'] -= d
+            angles['j_coxa_lf'] += d
             angles['j_coxa_rm'] -= d
-            angles['j_coxa_lr'] -= d
+            angles['j_coxa_lr'] += d
             angles['j_coxa_rf'] += d
-            angles['j_coxa_lm'] += d
+            angles['j_coxa_lm'] -= d
+            angles['j_coxa_rr'] += d
 
 
 class Walker:
