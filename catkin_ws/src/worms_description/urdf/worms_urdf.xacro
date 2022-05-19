@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+<!-- World Init Settings -->
+<xacro:property name="initial_z_offset" value="1.0" />
+
 <!-- Basic dimensions of WORMS-1 components (in m) -->
 <xacro:property name="uib_length" value="0.08" />
 <xacro:property name="ee_length" value="0.055" />
@@ -41,12 +44,12 @@
 
       <link name="MP_BODY">
         <inertial>
-          <origin xyz="0 0 0" rpy="0 0 1.57" />
+          <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
 	        <mass value="${m_pallet}" />
           <inertia ixx="0.003016"  ixy="0.0"  ixz="0.0" iyy="0.003016" iyz="0.0" izz="0.006014" />
         </inertial>
         <visual>
-          <origin xyz="0 0 0" rpy="0 0 1.57" />
+          <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
           <geometry>
             <!--box size="0.102 0.109 0.106" /-->
             <mesh filename="package://worms_description/meshes/pallet.STL"  scale="1 1 1"/>
@@ -56,7 +59,7 @@
           </material>
         </visual>
         <collision>
-          <origin xyz="0 0 0" rpy="0 0 0" />
+          <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 0" />
           <geometry>
             <mesh filename="package://worms_description/meshes/pallet_coll.STL"  scale="1 1 1"/>
           </geometry>
@@ -71,14 +74,14 @@
 
 <!-- RPY are set to offset the UIB (first component in leg from the pallet) by 90 degrees then by the angle to match the hexagon -->
 <!-- TODO: Replace xyz with calculations based on hexagon diameter -->
-    <xacro:leg_l xyz="0.4330 -0.2500 0.0000"  rpy="0 0 ${-0.52 + 1.57}" suffix="rf"/>
-    <xacro:leg_l xyz="0.0000 -0.5000 0.0000"  rpy="0 0 ${-1.57 + 1.57}" suffix="rm"/>
-    <xacro:leg_l xyz="-0.4330 -0.2500 0.0000"  rpy="0 0 ${-1.57 -1.04 + 1.57}" suffix="rr"/>
+    <xacro:leg_l xyz="0.4330 -0.2500 ${initial_z_offset}"  rpy="0 0 ${-0.52 + 1.57}" suffix="rf"/>
+    <xacro:leg_l xyz="0.0000 -0.5000 ${initial_z_offset}"  rpy="0 0 ${-1.57 + 1.57}" suffix="rm"/>
+    <xacro:leg_l xyz="-0.4330 -0.2500 ${initial_z_offset}"  rpy="0 0 ${-1.57 -1.04 + 1.57}" suffix="rr"/>
 
 
-    <xacro:leg_l xyz="0.4330 0.2500 0.0000"  rpy="0 0 ${0.52 + 1.57}" suffix="lf"/>
-    <xacro:leg_l xyz="0.0000 0.5000 0.0000"  rpy="0 0 ${1.57 + 1.57}" suffix="lm"/>
-    <xacro:leg_l xyz="-0.4330 0.2500 0.0000"  rpy="0 0 ${1.57 + 1.04 + 1.57}" suffix="lr"/>
+    <xacro:leg_l xyz="0.4330 0.2500 ${initial_z_offset}"  rpy="0 0 ${0.52 + 1.57}" suffix="lf"/>
+    <xacro:leg_l xyz="0.0000 0.5000 ${initial_z_offset}"  rpy="0 0 ${1.57 + 1.57}" suffix="lm"/>
+    <xacro:leg_l xyz="-0.4330 0.2500 ${initial_z_offset}"  rpy="0 0 ${1.57 + 1.04 + 1.57}" suffix="lr"/>
 
 </xacro:macro>
 
