@@ -7,10 +7,10 @@
 <!-- Basic dimensions of WORMS-1 components (in m) -->
 <xacro:property name="uib_length" value="0.08" />
 <xacro:property name="ee_length" value="0.055" />
-<xacro:property name="coxa_length" value="0.05" />
-<xacro:property name="motor_diameter" value="0.05" />
-<xacro:property name="thigh_length" value="0.35" />
-<xacro:property name="shin_length" value="0.475" />
+<xacro:property name="coxa_length" value="0.15" />
+<xacro:property name="motor_diameter" value="0.098" />
+<xacro:property name="thigh_length" value="0.27" />
+<xacro:property name="shin_length" value="0.45" />
 
 <!--  Masses of WORMS-1 components (in kg)-->
 <!--  Source: https://docs.google.com/spreadsheets/d/1z4cjFRy08wv40s6Jl9g9mymmIja3-cVj/edit#gid=1875184855-->
@@ -30,6 +30,7 @@
 
 <!-- TODO: Update component masses and inertias -->
 <!-- TODO: Add second ee, uib, and shoe -->
+<!-- TODO: Check link length specs -->
 
 
 <xacro:macro name="worms" params="parent *origin">
@@ -147,7 +148,7 @@
     <visual>
       <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_coxa.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -156,7 +157,7 @@
     <collision>
       <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_coxa.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -171,7 +172,7 @@
     <visual>
       <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_thigh.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -180,7 +181,7 @@
     <collision>
       <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_thigh.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -195,7 +196,7 @@
     <visual>
       <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_shin.stl"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -204,7 +205,7 @@
     <collision>
       <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_shin.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
