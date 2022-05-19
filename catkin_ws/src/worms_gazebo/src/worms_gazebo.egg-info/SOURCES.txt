@@ -1,0 +1,11 @@
+setup.py
+src/worms_gazebo/reset_sim.py
+src/worms_gazebo/set_angle_test.py
+src/worms_gazebo/walk_in_x.py
+src/worms_gazebo/walker.py
+src/worms_gazebo/walker_demo.py
+src/worms_gazebo/worms_hexapod.py
+src/worms_gazebo.egg-info/PKG-INFO
+src/worms_gazebo.egg-info/SOURCES.txt
+src/worms_gazebo.egg-info/dependency_links.txt
+src/worms_gazebo.egg-info/top_level.txt

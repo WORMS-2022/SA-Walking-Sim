@@ -8,7 +8,7 @@ if __name__ == '__main__':
     rospy.init_node('walker_demo')
 
     rospy.loginfo('Instantiating robot Client')
-    robot = WORMS_Hexapod()
+    robot = WORMS_Hexapod() # instantiate new robot just to publish commands
     rospy.sleep(1)
 
     rospy.loginfo('Walk in x-dir Starting')
