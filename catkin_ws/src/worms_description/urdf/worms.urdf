@@ -18,9 +18,8 @@
   <link name="MP_BODY">
     <inertial>
       <origin rpy="0 0 1.57" xyz="0 0 0"/>
-      <!-- <mass value="0.97559947"/> -->
-      <mass value="0.01"/>
-      <inertia ixx="3.1081800" ixy="-0.25460189" ixz="2.0318174" iyy="6.3787776" iyz="0.16417863" izz="5.3316425"/>
+      <mass value="7"/>
+      <inertia ixx="0.003016" ixy="0.0" ixz="0.0" iyy="0.003016" iyz="0.0" izz="0.006014"/>
     </inertial>
     <visual>
       <origin rpy="0 0 1.57" xyz="0 0 0"/>
@@ -45,7 +44,7 @@
   <link name="uib_rf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -67,7 +66,7 @@
   <link name="ee_rf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -89,7 +88,7 @@
   <link name="coxa_rf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -111,7 +110,7 @@
   <link name="thigh_rf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -133,7 +132,7 @@
   <link name="shin_rf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -172,21 +171,27 @@
     <child link="coxa_rf"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_rf" type="revolute">
     <parent link="coxa_rf"/>
     <child link="thigh_rf"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_rf" type="revolute">
     <parent link="thigh_rf"/>
     <child link="shin_rf"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_rf">
@@ -235,10 +240,12 @@
   <gazebo reference="shin_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="uib_rm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -260,7 +267,7 @@
   <link name="ee_rm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -282,7 +289,7 @@
   <link name="coxa_rm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -304,7 +311,7 @@
   <link name="thigh_rm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -326,7 +333,7 @@
   <link name="shin_rm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -365,21 +372,27 @@
     <child link="coxa_rm"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_rm" type="revolute">
     <parent link="coxa_rm"/>
     <child link="thigh_rm"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_rm" type="revolute">
     <parent link="thigh_rm"/>
     <child link="shin_rm"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_rm">
@@ -428,10 +441,12 @@
   <gazebo reference="shin_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="uib_rr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -453,7 +468,7 @@
   <link name="ee_rr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -475,7 +490,7 @@
   <link name="coxa_rr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -497,7 +512,7 @@
   <link name="thigh_rr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -519,7 +534,7 @@
   <link name="shin_rr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -558,21 +573,27 @@
     <child link="coxa_rr"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_rr" type="revolute">
     <parent link="coxa_rr"/>
     <child link="thigh_rr"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_rr" type="revolute">
     <parent link="thigh_rr"/>
     <child link="shin_rr"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_rr">
@@ -621,10 +642,12 @@
   <gazebo reference="shin_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="uib_lf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -646,7 +669,7 @@
   <link name="ee_lf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -668,7 +691,7 @@
   <link name="coxa_lf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -690,7 +713,7 @@
   <link name="thigh_lf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -712,7 +735,7 @@
   <link name="shin_lf">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -751,21 +774,27 @@
     <child link="coxa_lf"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_lf" type="revolute">
     <parent link="coxa_lf"/>
     <child link="thigh_lf"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_lf" type="revolute">
     <parent link="thigh_lf"/>
     <child link="shin_lf"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_lf">
@@ -814,10 +843,12 @@
   <gazebo reference="shin_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="uib_lm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -839,7 +870,7 @@
   <link name="ee_lm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -861,7 +892,7 @@
   <link name="coxa_lm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -883,7 +914,7 @@
   <link name="thigh_lm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -905,7 +936,7 @@
   <link name="shin_lm">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -944,21 +975,27 @@
     <child link="coxa_lm"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_lm" type="revolute">
     <parent link="coxa_lm"/>
     <child link="thigh_lm"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_lm" type="revolute">
     <parent link="thigh_lm"/>
     <child link="shin_lm"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_lm">
@@ -1007,10 +1044,12 @@
   <gazebo reference="shin_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="uib_lr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.04 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -1032,7 +1071,7 @@
   <link name="ee_lr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.0275 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -1054,7 +1093,7 @@
   <link name="coxa_lr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-      <mass value="0.024357719"/>
+      <mass value="1.35"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -1076,7 +1115,7 @@
   <link name="thigh_lr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.19999999999999998 0"/>
-      <mass value="0.024357719"/>
+      <mass value="2.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -1098,7 +1137,7 @@
   <link name="shin_lr">
     <inertial>
       <origin rpy="0 0 0" xyz="0 -0.2625 0"/>
-      <mass value="0.024357719"/>
+      <mass value="6.85"/>
       <inertia ixx="0.0051411124" ixy="-0.00057530255" ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812"/>
     </inertial>
     <visual>
@@ -1137,21 +1176,27 @@
     <child link="coxa_lr"/>
     <origin rpy="0 0 0" xyz="0 -0.08 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_thigh_lr" type="revolute">
     <parent link="coxa_lr"/>
     <child link="thigh_lr"/>
     <origin rpy="0.785 0 0" xyz="0 -0.1 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_shin_lr" type="revolute">
     <parent link="thigh_lr"/>
     <child link="shin_lr"/>
     <origin rpy="0.785 0 0" xyz="0 -0.39999999999999997 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <!-- Joint transmission definitions -->
   <transmission name="t_coxa_lr">
@@ -1200,6 +1245,8 @@
   <gazebo reference="shin_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
+  <!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
       <robotNamespace>/worms/</robotNamespace>

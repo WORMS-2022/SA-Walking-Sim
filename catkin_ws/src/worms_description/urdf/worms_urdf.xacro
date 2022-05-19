@@ -1,13 +1,25 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!-- Basic dimensions of WORMS-1 components -->
+<!-- Basic dimensions of WORMS-1 components (in m) -->
 <xacro:property name="uib_length" value="0.08" />
 <xacro:property name="ee_length" value="0.055" />
 <xacro:property name="coxa_length" value="0.05" />
 <xacro:property name="motor_diameter" value="0.05" />
 <xacro:property name="thigh_length" value="0.35" />
 <xacro:property name="shin_length" value="0.475" />
+
+<!--  Masses of WORMS-1 components (in kg)-->
+<!--  Source: https://docs.google.com/spreadsheets/d/1z4cjFRy08wv40s6Jl9g9mymmIja3-cVj/edit#gid=1875184855-->
+<xacro:property name="m_payload" value="15" />
+<xacro:property name="m_pallet" value="7" />
+<xacro:property name="m_motor" value="0.85" />
+<xacro:property name="m_coxa" value="0.5" />
+<xacro:property name="m_thigh" value="2" />
+<xacro:property name="m_shin" value="6" />
+<xacro:property name="m_uib" value="1" />
+<xacro:property name="m_ee" value="1" />
+<xacro:property name="m_shoe" value="1.52" />
 
 
 <!-- <xacro:property name="thigh_offset_y" value="-0.0645" />
@@ -30,10 +42,8 @@
       <link name="MP_BODY">
         <inertial>
           <origin xyz="0 0 0" rpy="0 0 1.57" />
-          <!-- <mass value="0.97559947"/> -->
-          <!--mass value="0.01"/> -->
-	  <mass value="6.0" />
-          <inertia ixx="3.1081800"  ixy="-0.25460189"  ixz="2.0318174" iyy="6.3787776" iyz="0.16417863" izz="5.3316425" />
+	        <mass value="${m_pallet}" />
+          <inertia ixx="0.003016"  ixy="0.0"  ixz="0.0" iyy="0.003016" iyz="0.0" izz="0.006014" />
         </inertial>
         <visual>
           <origin xyz="0 0 0" rpy="0 0 1.57" />
@@ -81,9 +91,8 @@
   <link name="uib_${suffix}">
     <inertial>
       <origin xyz="0 -${uib_length/2} 0" rpy="0 0 0"  />
-      <!--mass value="0.024357719"/> -->
-      <mass value="0.5"/>
-     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+      <mass value="${m_uib}"/>
+      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
       <origin xyz="0 -${uib_length/2} 0" rpy="0 0 0"  />
@@ -105,9 +114,8 @@
   <link name="ee_${suffix}">
     <inertial>
       <origin xyz="0 -${ee_length/2} 0" rpy="0 0 0"  />
-      <!--mass value="0.024357719"/> -->
-      <mass value = "0.5"/>
-     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+      <mass value = "${m_ee + m_motor}"/>
+      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
       <origin xyz="0 -${ee_length/2} 0" rpy="0 0 0"  />
@@ -130,8 +138,7 @@
   <link name="coxa_${suffix}">
     <inertial>
       <origin xyz="0 -${coxa_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
-      <!--mass value="0.024357719"/> -->
-      <mass value="3.67"/>
+      <mass value="${m_coxa + m_motor}"/>
      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
@@ -155,8 +162,7 @@
   <link name="thigh_${suffix}">
     <inertial>
       <origin xyz="0 -${thigh_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
-      <!--mass value="0.024357719"/> -->
-      <mass value="3.67"/>
+      <mass value="${m_thigh + m_motor}"/>
      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
@@ -180,9 +186,8 @@
   <link name="shin_${suffix}">
     <inertial>
       <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
-      <!-- mass value="0.024357719"/> -->
-      <mass value="3.67"/>
-     <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
+      <mass value="${m_shin + m_motor}"/>
+      <inertia ixx="0.0051411124"  ixy="-0.00057530255"  ixz="-0.000024729049" iyy="0.0081915737" iyz="-0.000019223094" izz="0.0011379812" />
     </inertial>
     <visual>
       <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
@@ -224,7 +229,9 @@
     <child link="coxa_${suffix}"/>
     <origin xyz="0 -${ee_length + motor_diameter/2} 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
 
@@ -233,7 +240,9 @@
     <child link="thigh_${suffix}"/>
     <origin xyz="0 -${coxa_length + motor_diameter} 0" rpy="0.785 0 0" />
     <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
   <joint name="j_shin_${suffix}" type="revolute">
@@ -241,7 +250,9 @@
     <child link="shin_${suffix}"/>
     <origin xyz="0 -${thigh_length + motor_diameter} 0" rpy="0.785 0 0" />
     <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
   <!-- Joint transmission definitions -->
@@ -303,6 +314,11 @@
   <gazebo reference="shin_${suffix}">    
     <material>Gazebo/Grey</material>
   </gazebo>
+
+
+<!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
+
 
   
 </xacro:macro>
