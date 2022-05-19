@@ -135,6 +135,8 @@ class WFunc:
             else:
                 angles[j] = self.pfn_3[j].get(x)
 
+
+        rospy.loginfo(angles)
         self.apply_velocity(angles, velocity, state, x)
         return angles
 
@@ -305,9 +307,12 @@ class Walker:
                 self.velocity = [0, 0, 0]
             if not self.is_walking() and i == 0:
                 # Do not move if nothing to do and already at 0
+                angles = func.get(0, 0, self.current_velocity)
                 self.update_velocity(self.velocity, n)
+                self.darwin.set_angles(angles)
                 r.sleep()
                 continue
+
             x = float(i) / n
             angles = func.get(gait_state, x, self.current_velocity)
             self.update_velocity(self.velocity, n)
@@ -327,6 +332,12 @@ class Walker:
             if abs(v) > e:
                 return True
         return False
+
+    def is_standing(self):
+        for v in self.current_velocity:
+            if not (v == 0.0):
+                return False
+        return True
 
     def rescale(self, angles, coef):
         z = {}
@@ -376,6 +387,10 @@ if __name__ == '__main__':
     robot = WORMS_Hexapod()
     rospy.loginfo('Instantiating Robot Walker')
     walker = Walker(robot)
+
+    rospy.sleep(0.5)
+
+    robot.set_walk_velocity(0, 0, 0)
 
     rospy.loginfo('Walker Ready')
     while not rospy.is_shutdown():
