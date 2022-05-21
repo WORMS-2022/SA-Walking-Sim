@@ -5,8 +5,11 @@
 <xacro:property name="initial_z_offset" value="1.0" />
 
 <!-- Basic dimensions of WORMS-1 components (in m) -->
-<xacro:property name="uib_length" value="0.08" />
-<xacro:property name="ee_length" value="0.055" />
+<!-- Note: Lengths are reported as distances between consecutive joints (motor axes) -->
+<xacro:property name="uib_length" value="0.062373" />
+<xacro:property name="ee_length" value="0.062373" />
+<xacro:property name="uib_ee_gap_length" value="0.0127" />
+<xacro:property name="hip_structure_length" value="0.1397" />
 <xacro:property name="coxa_length" value="0.15" />
 <xacro:property name="motor_diameter" value="0.098" />
 <xacro:property name="thigh_length" value="0.27" />
@@ -31,6 +34,7 @@
 <!-- TODO: Update component masses and inertias -->
 <!-- TODO: Add second ee, uib, and shoe -->
 <!-- TODO: Check link length specs -->
+<!-- TODO: Add simplified collision meshes -->
 
 
 <xacro:macro name="worms" params="parent *origin">
@@ -53,7 +57,7 @@
           <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
           <geometry>
             <!--box size="0.102 0.109 0.106" /-->
-            <mesh filename="package://worms_description/meshes/pallet.STL"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/pallet.stl"  scale="1 1 1"/>
           </geometry>
           <material name="Red">
             <color rgba="0.2 0.2 0.2 1.0"/>
@@ -62,7 +66,7 @@
         <collision>
           <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
           <geometry>
-            <mesh filename="package://worms_description/meshes/pallet_coll.STL"  scale="1 1 1"/>
+            <mesh filename="package://worms_description/meshes/pallet.stl"  scale="1 1 1"/>
           </geometry>
 
         </collision>
@@ -92,7 +96,7 @@
 
  <xacro:macro name="leg_l" params="xyz rpy suffix">
 
-  <link name="uib_${suffix}">
+  <link name="hip_structure_${suffix}">
     <inertial>
       <origin xyz="0 -${uib_length/2} 0" rpy="0 0 0"  />
       <mass value="${m_uib}"/>
@@ -101,7 +105,7 @@
     <visual>
       <origin xyz="0 -${uib_length/2} 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/UIB.STL"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_hip_structure.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -111,29 +115,6 @@
       <origin xyz="0 -${uib_length/2} 0" rpy="0 0 0"  />
       <geometry>
         <mesh filename="package://worms_description/meshes/UIB.STL"  scale="1 1 1"/>
-      </geometry>
-    </collision>
-  </link>
-
-  <link name="ee_${suffix}">
-    <inertial>
-      <origin xyz="0 -${ee_length/2} 0" rpy="0 0 0"  />
-      <mass value = "${m_ee + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
-    </inertial>
-    <visual>
-      <origin xyz="0 -${ee_length/2} 0" rpy="0 0 0"  />
-      <geometry>
-        <mesh filename="package://worms_description/meshes/end_effector.STL"  scale="1 1 1"/>
-      </geometry>
-      <material name="Grey">
-        <color rgba="0.20 0.20 0.20 1.0"/>
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 -${ee_length/2} 0" rpy="0 0 0"  />
-      <geometry>
-        <mesh filename="package://worms_description/meshes/end_effector.STL"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -210,39 +191,53 @@
     </collision>
   </link>
 
+  <link name="shoe_${suffix}">
+    <inertial>
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
+      <mass value="${m_shin + m_motor}"/>
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+    </inertial>
+    <visual>
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_shin.stl"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 -${shin_length/2 + motor_diameter/2} 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/updated_parts/motor_shin.stl"  scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
   <!-- Joint definitions -->
 
-  <joint name="j_uib_${suffix}" type="fixed">
+  <joint name="j_hip_structure_${suffix}" type="fixed">
     <parent link="MP_BODY"/>
-    <child link="uib_${suffix}"/>
+    <child link="hip_structure_${suffix}"/>
     <origin xyz="${xyz}" rpy="${rpy}" />
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
-  <joint name="j_ee_${suffix}" type="fixed">
-    <parent link="uib_${suffix}"/>
-    <child link="ee_${suffix}"/>
-    <origin xyz="0 -${uib_length} 0" rpy="0 0 0" />
-    <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
-  </joint>
-
   <joint name="j_coxa_${suffix}" type="revolute">
-    <parent link="ee_${suffix}"/>
+    <parent link="hip_structure_${suffix}"/>
     <child link="coxa_${suffix}"/>
-    <origin xyz="0 -${ee_length + motor_diameter/2} 0" rpy="0 0 0" />
+    <origin xyz="0 -${hip_structure_length} 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
     <!-- <dynamics damping="0.0" friction="100000.0"/> -->
     <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
     <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
-
   <joint name="j_thigh_${suffix}" type="revolute">
     <parent link="coxa_${suffix}"/>
     <child link="thigh_${suffix}"/>
-    <origin xyz="0 -${coxa_length + motor_diameter} 0" rpy="0.785 0 0" />
+    <origin xyz="0 -${coxa_length} 0" rpy="0.785 0 0" />
     <axis xyz="1 0 0" />
     <!-- <dynamics damping="0.0" friction="100000.0"/> -->
     <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
@@ -252,7 +247,17 @@
   <joint name="j_shin_${suffix}" type="revolute">
     <parent link="thigh_${suffix}"/>
     <child link="shin_${suffix}"/>
-    <origin xyz="0 -${thigh_length + motor_diameter} 0" rpy="0.785 0 0" />
+    <origin xyz="0 -${thigh_length} 0" rpy="0.785 0 0" />
+    <axis xyz="1 0 0" />
+    <!-- <dynamics damping="0.0" friction="100000.0"/> -->
+    <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_shoe_${suffix}" type="fixed">
+    <parent link="shin_${suffix}"/>
+    <child link="shoe_${suffix}"/>
+    <origin xyz="0 -${shin_length} 0" rpy="0 0 0" />
     <axis xyz="1 0 0" />
     <!-- <dynamics damping="0.0" friction="100000.0"/> -->
     <!-- <limit effort="100.0" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" /> -->
@@ -298,14 +303,6 @@
 
 
 <!-- Gazebo material definitions -->
-
-  <gazebo reference="uib_${suffix}">    
-    <material>Gazebo/Grey</material>
-  </gazebo>
-
-  <gazebo reference="ee_${suffix}">    
-    <material>Gazebo/Grey</material>
-  </gazebo>
 
   <gazebo reference="coxa_${suffix}">    
     <material>Gazebo/Grey</material>
