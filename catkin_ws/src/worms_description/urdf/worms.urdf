@@ -36,7 +36,7 @@
     <collision>
       <origin rpy="0 0 1.57" xyz="0 0 1.0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/pallet_reduced.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/older_parts/pallet.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -45,7 +45,7 @@
   </gazebo>
   <link name="hip_structure_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -59,7 +59,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -164,7 +164,7 @@
   <joint name="j_coxa_rf" type="revolute">
     <parent link="hip_structure_rf"/>
     <child link="coxa_rf"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -185,7 +185,7 @@
   <joint name="j_shoe_rf" type="fixed">
     <parent link="shin_rf"/>
     <child link="shoe_rf"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -234,7 +234,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -248,7 +248,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -353,7 +353,7 @@
   <joint name="j_coxa_rm" type="revolute">
     <parent link="hip_structure_rm"/>
     <child link="coxa_rm"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -374,7 +374,7 @@
   <joint name="j_shoe_rm" type="fixed">
     <parent link="shin_rm"/>
     <child link="shoe_rm"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -423,7 +423,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -437,7 +437,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -542,7 +542,7 @@
   <joint name="j_coxa_rr" type="revolute">
     <parent link="hip_structure_rr"/>
     <child link="coxa_rr"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -563,7 +563,7 @@
   <joint name="j_shoe_rr" type="fixed">
     <parent link="shin_rr"/>
     <child link="shoe_rr"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -612,7 +612,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -626,7 +626,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -731,7 +731,7 @@
   <joint name="j_coxa_lf" type="revolute">
     <parent link="hip_structure_lf"/>
     <child link="coxa_lf"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -752,7 +752,7 @@
   <joint name="j_shoe_lf" type="fixed">
     <parent link="shin_lf"/>
     <child link="shoe_lf"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -801,7 +801,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -815,7 +815,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -920,7 +920,7 @@
   <joint name="j_coxa_lm" type="revolute">
     <parent link="hip_structure_lm"/>
     <child link="coxa_lm"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -941,7 +941,7 @@
   <joint name="j_shoe_lm" type="fixed">
     <parent link="shin_lm"/>
     <child link="shoe_lm"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -990,7 +990,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <mass value="1"/>
       <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
     </inertial>
@@ -1004,7 +1004,7 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.14604999999999999 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
         <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
       </geometry>
@@ -1109,7 +1109,7 @@
   <joint name="j_coxa_lr" type="revolute">
     <parent link="hip_structure_lr"/>
     <child link="coxa_lr"/>
-    <origin rpy="0 0 0" xyz="0 -0.1397 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -1130,7 +1130,7 @@
   <joint name="j_shoe_lr" type="fixed">
     <parent link="shin_lr"/>
     <child link="shoe_lr"/>
-    <origin rpy="0 0 0" xyz="0 -0.45 0"/>
+    <origin rpy="0 0 0" xyz="0 -0.5680000000000001 0"/>
     <axis xyz="1 0 0"/>
     <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
