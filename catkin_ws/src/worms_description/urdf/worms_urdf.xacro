@@ -65,13 +65,13 @@
             <color rgba="0.2 0.2 0.2 1.0"/>
           </material>
         </visual>
-        <collision>
+        <!-- <collision>
           <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
           <geometry>
             <mesh filename="package://worms_description/older_parts/pallet.stl"  scale="1 1 1"/>
           </geometry>
 
-        </collision>
+        </collision> -->
       </link>
 
 
@@ -113,12 +113,12 @@
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
-    <collision>
+    <!-- <collision>
       <origin xyz="0 -${hip_structure_length + uib_ee_gap_length} 0" rpy="0 0 0"  />
       <geometry>
         <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl"  scale="1 1 1"/>
       </geometry>
-    </collision>
+    </collision> -->
   </link>
 
 
@@ -137,12 +137,12 @@
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
-    <collision>
+    <!-- <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
       </geometry>
-    </collision>
+    </collision> -->
   </link>
 
 
@@ -161,12 +161,12 @@
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
-    <collision>
+    <!-- <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
       </geometry>
-    </collision>
+    </collision> -->
   </link>
 
 
@@ -185,19 +185,19 @@
         <color rgba="0.20 0.20 0.20 1.0"/>
       </material>
     </visual>
-    <collision>
+    <!-- <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
         <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl"  scale="1 1 1"/>
       </geometry>
-    </collision>
+    </collision> -->
   </link>
 
   <link name="shoe_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_shin + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.29" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -211,7 +211,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl"  scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
