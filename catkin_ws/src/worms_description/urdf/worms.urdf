@@ -27,7 +27,7 @@
       <origin rpy="0 0 1.57" xyz="0 0 1.0"/>
       <geometry>
         <!--box size="0.102 0.109 0.106" /-->
-        <mesh filename="package://worms_description/meshes/pallet_reduced.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/pallet_reduced_new.stl" scale="1 1 1"/>
       </geometry>
       <material name="Red">
         <color rgba="0.2 0.2 0.2 1.0"/>
@@ -52,7 +52,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -61,7 +61,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -118,7 +118,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -127,7 +127,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -140,7 +140,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -149,7 +149,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -221,6 +221,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_rf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -228,6 +231,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_rf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_rf">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
@@ -241,7 +247,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -250,7 +256,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -307,7 +313,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -316,7 +322,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -329,7 +335,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -338,7 +344,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -410,6 +416,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_rm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -417,6 +426,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_rm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_rm">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
@@ -430,7 +442,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -439,7 +451,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -496,7 +508,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -505,7 +517,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -518,7 +530,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -527,7 +539,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -599,6 +611,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_rr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -606,6 +621,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_rr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_rr">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
@@ -619,7 +637,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -628,7 +646,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -685,7 +703,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -694,7 +712,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -707,7 +725,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -716,7 +734,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -788,6 +806,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_lf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -795,6 +816,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_lf">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_lf">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
@@ -808,7 +832,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -817,7 +841,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -874,7 +898,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -883,7 +907,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -896,7 +920,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -905,7 +929,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -977,6 +1001,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_lm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -984,6 +1011,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_lm">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_lm">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
@@ -997,7 +1027,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -1006,7 +1036,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_hip_structure.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1063,7 +1093,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -1072,7 +1102,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/motor_shin_ee.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1085,7 +1115,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -1094,7 +1124,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://worms_description/meshes/ee_shoe.stl" scale="1 1 1"/>
+        <mesh filename="package://worms_description/meshes/ee_shoe_reduced.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1166,6 +1196,9 @@
     </actuator>
   </transmission>
   <!-- Gazebo material definitions -->
+  <gazebo reference="hip_structure_lr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
   <gazebo reference="coxa_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -1173,6 +1206,9 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="shin_lr">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="shoe_lr">
     <material>Gazebo/Grey</material>
   </gazebo>
   <!-- Gazebo gravity setting -->
