@@ -49,7 +49,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="6.85"/>
-      <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 0" xyz="0 0 0.5224000000000001"/>
@@ -65,7 +65,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="2.85"/>
-      <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0.27 0"/>
@@ -81,7 +81,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1.35"/>
-      <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0.15 0"/>
@@ -97,7 +97,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1"/>
-      <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -113,7 +113,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1"/>
-      <inertia ixx="0.0004167" ixy="0.0" ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -152,7 +152,7 @@
     <child link="arm_hip_structure_gnc"/>
     <origin rpy="0 0 0 " xyz="0 0.15 0"/>
     <axis xyz="1 0 0"/>
-    <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
+    <limit effort="48" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
   <joint name="j_arm_lidar_gnc" type="fixed">
     <parent link="arm_hip_structure_gnc"/>

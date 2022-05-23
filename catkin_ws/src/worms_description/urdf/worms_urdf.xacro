@@ -104,7 +104,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_shin + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
       <origin xyz="0 0 ${uib_ee_gap_length + 0.5097}" rpy="1.57 0 0"  />
@@ -121,7 +121,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_thigh + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
       <origin xyz="0 ${thigh_length} 0" rpy="0 0 0"  />
@@ -138,7 +138,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_coxa + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
       <origin xyz="0 ${coxa_length} 0" rpy="0 0 0"  />
@@ -155,7 +155,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_uib}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -172,7 +172,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_uib}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -216,7 +216,7 @@
     <child link="arm_hip_structure_${suffix}"/>
     <origin xyz="0 ${coxa_length} 0" rpy="0 0 0 " />
     <axis xyz="1 0 0" />
-    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint>
 
   <joint name="j_arm_lidar_${suffix}" type="fixed">
