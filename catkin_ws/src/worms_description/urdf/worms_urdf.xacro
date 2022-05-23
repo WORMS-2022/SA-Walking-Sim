@@ -15,6 +15,7 @@
 <xacro:property name="thigh_length" value="0.27" />
 <xacro:property name="shin_length" value="0.45" />
 <xacro:property name="shin_shoe_length" value="0.118" />
+<xacro:property name="shin_ee_length" value="0.5097" />
 
 
 <!--  Masses of WORMS-1 components (in kg)-->
@@ -79,6 +80,8 @@
         <material>Gazebo/Red</material>
       </gazebo>
 
+    <xacro:arm xyz="0 0 ${initial_z_offset + 0.131}"  rpy="0 0 0" suffix="gnc"/>
+
 <!-- RPY are set to offset the UIB (first component in leg from the pallet) by 90 degrees then by the angle to match the hexagon -->
 <!-- TODO: Replace xyz with calculations based on hexagon diameter -->
     <xacro:leg_l xyz="0.476 -0.2748 ${initial_z_offset}"  rpy="0 0 ${-0.52 + 1.57}" suffix="rf"/>
@@ -92,7 +95,175 @@
 
 </xacro:macro>
 
+<!-- Arm generation sub-macro -->
 
+ <xacro:macro name="arm" params="xyz rpy suffix">
+
+  <link name="arm_shin_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="${m_shin + m_motor}"/>
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 ${uib_ee_gap_length + 0.5097}" rpy="1.57 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/motor_shin_ee_reduced.stl"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="arm_thigh_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="${m_thigh + m_motor}"/>
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+    </inertial>
+    <visual>
+      <origin xyz="0 ${thigh_length} 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/motor_thigh.stl"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="arm_coxa_${suffix}">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <mass value="${m_coxa + m_motor}"/>
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+    </inertial>
+    <visual>
+      <origin xyz="0 ${coxa_length} 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/motor_coxa.stl"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="arm_hip_structure_${suffix}">
+    <inertial>
+      <origin xyz="0 -${hip_structure_length + uib_ee_gap_length} 0" rpy="0 0 0"  />
+      <mass value="${m_uib}"/>
+      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <geometry>
+        <mesh filename="package://worms_description/meshes/hip_structure_reduced.stl"  scale="1 1 1"/>
+      </geometry>
+      <material name="Grey">
+        <color rgba="0.20 0.20 0.20 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint definitions -->
+
+  <joint name="j_arm_shin_${suffix}" type="fixed">
+    <parent link="MP_BODY"/>
+    <child link="arm_shin_${suffix}"/>
+    <origin xyz="${xyz}" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_arm_thigh_${suffix}" type="revolute">
+    <parent link="arm_shin_${suffix}"/>
+    <child link="arm_thigh_${suffix}"/>
+    <origin xyz="0 0 ${uib_ee_gap_length + shin_ee_length}" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_arm_coxa_${suffix}" type="revolute">
+    <parent link="arm_thigh_${suffix}"/>
+    <child link="arm_coxa_${suffix}"/>
+    <origin xyz="0 ${thigh_length} 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="48" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <joint name="j_arm_hip_structure_${suffix}" type="fixed">
+    <parent link="arm_coxa_${suffix}"/>
+    <child link="arm_hip_structure_${suffix}"/>
+    <origin xyz="0 ${coxa_length} 0" rpy="${rpy}" />
+    <axis xyz="1 0 0" />
+    <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
+  </joint>
+
+  <!-- Joint transmission definitions -->
+
+   <!-- <transmission name="t_coxa_${suffix}">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
+    </joint>
+    <actuator name="m_coxa_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+   <transmission name="t_thigh_${suffix}">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>    
+    </joint>
+    <actuator name="m_thigh_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+   <transmission name="t_shin_${suffix}">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j_shin_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="m_shin_${suffix}">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission> -->
+
+
+<!-- Gazebo material definitions -->
+
+  <!-- <gazebo reference="hip_structure_${suffix}">    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="coxa_${suffix}">    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="thigh_${suffix}">    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="shin_${suffix}">    
+    <material>Gazebo/Grey</material>
+  </gazebo> -->
+
+
+<!-- Gazebo gravity setting -->
+  <!-- <turnGravityOff>1</turnGravityOff> -->
+
+
+  
+</xacro:macro>
 
 <!-- Leg generation sub-macro -->
 
