@@ -131,7 +131,7 @@
   <joint name="j_arm_shin_gnc" type="fixed">
     <parent link="MP_BODY"/>
     <child link="arm_shin_gnc"/>
-    <origin rpy="0 0 0" xyz="0 0 1.131"/>
+    <origin rpy="0 0 -0.523599" xyz="0 0 1.131"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>

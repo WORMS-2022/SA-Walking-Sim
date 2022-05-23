@@ -78,7 +78,7 @@
         <material>Gazebo/Red</material>
       </gazebo>
 
-    <xacro:arm xyz="0 0 ${initial_z_offset + 0.131}"  rpy="0 0 0" suffix="gnc"/>
+    <xacro:arm xyz="0 0 ${initial_z_offset + 0.131}"  rpy="0 0 -0.523599" suffix="gnc"/>
 
 <!-- RPY are set to offset the UIB (first component in leg from the pallet) by 90 degrees then by the angle to match the hexagon -->
 <!-- TODO: Replace xyz with calculations based on hexagon diameter -->
