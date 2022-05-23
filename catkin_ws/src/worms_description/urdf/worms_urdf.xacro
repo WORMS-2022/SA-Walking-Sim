@@ -36,9 +36,6 @@
 <xacro:property name="thigh_offset_z" value="-0.0145" /> -->
 
 <!-- TODO: Update component masses and inertias -->
-<!-- TODO: Add second ee, uib, and shoe -->
-<!-- TODO: Check link length specs -->
-<!-- TODO: Add simplified collision meshes -->
 
 
 <xacro:macro name="worms" params="parent *origin">
@@ -55,7 +52,7 @@
         <inertial>
           <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
 	        <mass value="${m_pallet}" />
-          <inertia ixx="0.003016"  ixy="0.0"  ixz="0.0" iyy="0.003016" iyz="0.0" izz="0.006014" />
+          <inertia ixx="4.501530"  ixy="0.000001"  ixz=" -0.000005" iyy="4.501530" iyz="-0.000001" izz="8.711449" />
         </inertial>
         <visual>
           <origin xyz="0 0 ${initial_z_offset}" rpy="0 0 1.57" />
@@ -103,7 +100,8 @@
   <link name="arm_shin_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_shin + m_motor}"/>
+      <mass value="${m_shin + m_motor + m_thigh + m_motor + m_coxa + m_motor + m_uib + m_uib}"/>
+      <!-- <mass value="${m_shin + m_motor}"/> -->
       <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
@@ -120,7 +118,8 @@
   <link name="arm_thigh_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_thigh + m_motor}"/>
+      <mass value="1e-9"/>
+      <!-- <mass value="${m_thigh + m_motor}"/> -->
       <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
@@ -137,7 +136,8 @@
   <link name="arm_coxa_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_coxa + m_motor}"/>
+      <mass value="1e-9"/>
+      <!-- <mass value="${m_coxa + m_motor}"/> -->
       <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
@@ -154,7 +154,8 @@
   <link name="arm_hip_structure_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_uib}"/>
+      <mass value="1e-9"/>
+      <!-- <mass value="${m_uib}"/> -->
       <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
@@ -171,7 +172,8 @@
   <link name="arm_lidar_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_uib}"/>
+      <mass value="1e-9"/>
+      <!-- <mass value="${m_uib}"/> -->
       <inertia ixx="1e-9"  ixy="0.0"  ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9" />
     </inertial>
     <visual>
@@ -289,7 +291,7 @@
     <inertial>
       <origin xyz="0 -${hip_structure_length + uib_ee_gap_length} 0" rpy="0 0 0"  />
       <mass value="${m_uib}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="0.001999"  ixy="0.000001"  ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027" />
     </inertial>
     <visual>
       <origin xyz="0 -${hip_structure_length + uib_ee_gap_length} 0" rpy="0 0 0"  />
@@ -313,7 +315,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_coxa + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="0.003441"  ixy="0.000110"  ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -337,7 +339,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_thigh + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="0.012495"  ixy="0.000134"  ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -361,7 +363,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
       <mass value="${m_shin + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.0007417" />
+      <inertia ixx="0.097990"  ixy="0.0"  ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
@@ -383,8 +385,8 @@
   <link name="shoe_${suffix}">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"  />
-      <mass value="${m_shin + m_motor}"/>
-      <inertia ixx="0.0004167"  ixy="0.0"  ixz="0.0" iyy="0.0007417" iyz="0.0" izz="0.29" />
+      <mass value="${m_shoe + m_ee}"/>
+      <inertia ixx="0.025955"  ixy="0.0"  ixz="0.0" iyy="0.014273" iyz="0.0" izz="0.014273" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"  />
