@@ -57,7 +57,7 @@ class WFunc:
     def __init__(self, n_phases=6, **kwargs):
         self.parameters = {}
 
-        self.parameters['swing_scale'] = 1.0
+        self.parameters['swing_scale'] = 5.0
         self.parameters['vx_scale'] = 0.5
         self.parameters['vy_scale'] = 0.5
         self.parameters['vt_scale'] = 0.4
@@ -73,7 +73,7 @@ class WFunc:
     def generate(self):
         f1 = WJFunc()
         f1.in_scale = math.pi
-        f1.scale = -self.parameters['swing_scale']
+        f1.scale = self.parameters['swing_scale']
 
         f2 = f1.clone()
         f2.scale = 0
@@ -91,7 +91,7 @@ class WFunc:
 
         self.set_func('j_thigh', f1, f2)
         self.set_func('j_shin', f3, f4)
-        self.set_func('j_coxa', f1, f2)
+        self.set_func('j_coxa', zero, zero)
 
         # self.show()
 
@@ -135,11 +135,11 @@ class WFunc:
                     angles["j_coxa_" + leg] -= d
                 else:
                     angles["j_coxa_" + leg] += d
-            else:
-                if 'l' in leg:
-                    angles["j_coxa_" + leg] += d
-                else:
-                    angles["j_coxa_" + leg] -= d
+            # else:
+            #     if 'l' in leg:
+            #         angles["j_coxa_" + leg] += d
+            #     else:
+            #         angles["j_coxa_" + leg] -= d
 
         # VY
         # v=velocity[1]*self.parameters["vy_scale"]
@@ -264,7 +264,7 @@ class Walker:
         func = self.func
 
         # Global walk loop
-        n = 500
+        n = 50
         gait_state = 0
         i = 0
         self.current_velocity = [0, 0, 0]
@@ -287,14 +287,10 @@ class Walker:
             angles = func.get(gait_state, x, self.current_velocity)
             # angles['j_thigh_lm'] = -3.14
             # angles['j_thigh_rm'] = -3.14
-            # angles['j_shin_rr'] = 0
-            # angles['j_shin_lr'] = 0
-            # angles['j_shin_lm'] = 0
-            # angles['j_shin_rm'] = 0
-            # angles['j_shin_lf'] = 0.0
-            # angles['j_shin_rf'] = 0.0
-            # angles['j_thigh_lf'] = -3.14
-            # angles['j_thigh_rf'] = -3.14
+            # angles['j_thigh_lr'] = -1.0
+            # angles['j_thigh_rr'] = -1.0
+            # angles['j_thigh_lf'] = -1.0
+            # angles['j_thigh_rf'] = -1.0
             self.update_velocity(self.velocity, n)
             self.darwin.set_angles(angles)
             i += 1
