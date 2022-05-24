@@ -100,7 +100,7 @@ class WFunc:
         self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)]
 
         self.set_func('j_thigh', f1, f2)
-        self.set_func('j_shin', zero, zero)
+        self.set_func('j_shin', f3, f2)
         self.set_func('j_coxa', zero, zero)
 
         # self.show()
@@ -289,7 +289,7 @@ class Walker:
                 # rospy.loginfo('TEST!')
                 # angles['j_thigh_lm'] = -3.14
                 # angles['j_thigh_rm'] = -3.14
-                angles['j_thigh_lr'] = -np.pi/2
+                # angles['j_thigh_lr'] = -np.pi/2
                 self.darwin.set_angles(angles)
                 r.sleep()
                 continue
