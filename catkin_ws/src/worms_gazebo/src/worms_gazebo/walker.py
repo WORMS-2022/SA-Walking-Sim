@@ -91,6 +91,7 @@ class WFunc:
 
         f3 = f1.clone()
         f3.scale = 1
+        f3.in_scale = -(np.pi + np.pi/4)
 
         f4 = f2.clone()
 
@@ -145,11 +146,11 @@ class WFunc:
                     angles["j_coxa_" + leg] -= d
                 else:
                     angles["j_coxa_" + leg] += d
-            # else:
-            #     if 'l' in leg:
-            #         angles["j_coxa_" + leg] += d
-            #     else:
-            #         angles["j_coxa_" + leg] -= d
+            else:
+                if 'l' in leg:
+                    angles["j_coxa_" + leg] += d
+                else:
+                    angles["j_coxa_" + leg] -= d
 
         # VY
         # v=velocity[1]*self.parameters["vy_scale"]
