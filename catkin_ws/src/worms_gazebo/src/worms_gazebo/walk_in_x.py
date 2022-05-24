@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     rospy.loginfo('Walk in x-dir Starting')
 
-    robot.set_walk_velocity(1, 0, 0)
+    robot.set_walk_velocity(0.3, 0, 0)
     rospy.sleep(15)
     robot.set_walk_velocity(0, 0, 0)
 

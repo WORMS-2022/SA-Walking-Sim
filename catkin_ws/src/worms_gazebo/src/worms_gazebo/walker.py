@@ -54,10 +54,10 @@ class WJFunc:
 
 class WFunc:
     """Walk Function"""
-    def __init__(self, **kwargs):
+    def __init__(self, n_phases=6, **kwargs):
         self.parameters = {}
 
-        self.parameters['swing_scale'] = 1
+        self.parameters['swing_scale'] = 1.0
         self.parameters['vx_scale'] = 0.5
         self.parameters['vy_scale'] = 0.5
         self.parameters['vt_scale'] = 0.4
@@ -65,14 +65,12 @@ class WFunc:
         for k, v in kwargs.items():
             self.parameters[k] = v
 
+        self.n_phases = n_phases
+
         self.joints = hexapod_joints
         self.generate()
 
     def generate(self):
-        self.pfn_1 = {}  # phase 1 joint functions
-        self.pfn_2 = {}  # phase 2 joint functions
-        self.pfn_3 = {}  # phase 3 joint functions
-
         f1 = WJFunc()
         f1.in_scale = math.pi
         f1.scale = -self.parameters['swing_scale']
@@ -89,66 +87,39 @@ class WFunc:
         zero = WJFunc()
         zero.scale = 0
 
+        self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)]
+
         self.set_func('j_thigh', f1, f2)
         self.set_func('j_shin', f3, f4)
-        self.set_func('j_coxa', zero, zero)
+        self.set_func('j_coxa', f1, f2)
 
-        self.show()
+        # self.show()
 
-    # TODO: Refactor inputs fp, fa to include phases 1-3
     # TODO: Refactor for easier change of leg sequencing
     def set_func(self, joint, fp, fa):
-        for leg in ['lf', 'rf']:
-            j = joint + '_' + leg
-            self.pfn_1[j] = fp
-            self.pfn_2[j] = fa
-            self.pfn_3[j] = fa
-
-        for leg in ['lm', 'rm']:
-            j = joint + '_' + leg
-            self.pfn_1[j] = fa
-            self.pfn_2[j] = fp
-            self.pfn_3[j] = fa
-
-        for leg in ['lr', 'rr']:
-            j = joint + '_' + leg
-            self.pfn_1[j] = fa
-            self.pfn_2[j] = fa
-            self.pfn_3[j] = fp
-
-    # def generate_right(self):
-    #     # Mirror from left to right and antiphase right
-    #     l=[ v[:-2] for v in self.pfn.keys()]
-    #     for j in l:
-    #         self.pfn[j+"_r"]=self.afn[j+"_l"].mirror()
-    #         self.afn[j+"_r"]=self.pfn[j+"_l"].mirror()
+        for i, leg in enumerate(['lr', 'lm', 'lf', 'rr', 'rm', 'rf']):
+            self.pfn_list[i][joint + '_' + leg] = fp
 
     def get(self, state, x, velocity):
         """x between 0 and 1"""
         angles = {}
-        for j in self.pfn_1.keys():
-            if state == 0:
-                v = self.pfn_1[j].get(x)
-                angles[j] = v
-            elif state == 1:
-                angles[j] = self.pfn_2[j].get(x)
-            else:
-                angles[j] = self.pfn_3[j].get(x)
+        for j in hexapod_joints:
+                angles[j] = self.pfn_list[state][j].get(x)
 
 
         rospy.loginfo(angles)
         self.apply_velocity(angles, velocity, state, x)
         return angles
 
-    def show(self):
-        for j in self.pfn_1.keys():
-            print(j, 'p1', self.pfn_1[j])
+    # def show(self):
+    #     for j in self.pfn_1.keys():
+    #         print(j, 'p1', self.pfn_1[j])
 
-        for j in self.pfn_2.keys():
-            print(j, 'p2', self.pfn_2[j])
+    #     for j in self.pfn_2.keys():
+    #         print(j, 'p2', self.pfn_2[j])
 
-        for j in self.pfn_3.keys():
-            print(j, 'p3', self.pfn_3[j])
+    #     for j in self.pfn_3.keys():
+    #         print(j, 'p3', self.pfn_3[j])
 
 
     def apply_velocity(self, angles, velocity, state, x):
@@ -157,27 +128,18 @@ class WFunc:
         # VX - L forward-moving limbs are -d, R forward-moving limbs are +d
         v = velocity[0] * self.parameters['vx_scale']
         d = (x * 2 - 1) * v
-        if state == 0:
-            angles['j_coxa_lf'] -= d
-            angles['j_coxa_rm'] -= d
-            angles['j_coxa_lr'] += d
-            angles['j_coxa_rf'] += d
-            angles['j_coxa_lm'] += d
-            angles['j_coxa_rr'] -= d
-        elif state == 1:
-            angles['j_coxa_lf'] += d
-            angles['j_coxa_rm'] += d
-            angles['j_coxa_lr'] += d
-            angles['j_coxa_rf'] -= d
-            angles['j_coxa_lm'] -= d
-            angles['j_coxa_rr'] -= d
-        else:
-            angles['j_coxa_lf'] += d
-            angles['j_coxa_rm'] -= d
-            angles['j_coxa_lr'] -= d
-            angles['j_coxa_rf'] -= d
-            angles['j_coxa_lm'] += d
-            angles['j_coxa_rr'] += d
+
+        for i, leg in enumerate(['lr', 'lm', 'lf', 'rr', 'rm', 'rf']):
+            if i == state:
+                if 'l' in leg:
+                    angles["j_coxa_" + leg] -= d
+                else:
+                    angles["j_coxa_" + leg] += d
+            else:
+                if 'l' in leg:
+                    angles["j_coxa_" + leg] += d
+                else:
+                    angles["j_coxa_" + leg] -= d
 
         # VY
         # v=velocity[1]*self.parameters["vy_scale"]
@@ -207,40 +169,40 @@ class WFunc:
         #         angles["j_ankle2_r"]-=d
 
         # VT
-        v = velocity[2] * self.parameters['vt_scale']
-        d = (x * 2 - 1) * v
-        if state == 0:
-            angles['j_coxa_lf'] -= d
-            angles['j_coxa_rm'] += d
-            angles['j_coxa_lr'] -= d
-            angles['j_coxa_rf'] -= d
-            angles['j_coxa_lm'] += d
-            angles['j_coxa_rr'] -= d
-        elif state == 1:
-            angles['j_coxa_lf'] -= d
-            angles['j_coxa_rm'] += d
-            angles['j_coxa_lr'] -= d
-            angles['j_coxa_rf'] -= d
-            angles['j_coxa_lm'] += d
-            angles['j_coxa_rr'] -= d
-        else:
-            angles['j_coxa_lf'] += d
-            angles['j_coxa_rm'] -= d
-            angles['j_coxa_lr'] += d
-            angles['j_coxa_rf'] += d
-            angles['j_coxa_lm'] -= d
-            angles['j_coxa_rr'] += d
+        # v = velocity[2] * self.parameters['vt_scale']
+        # d = (x * 2 - 1) * v
+        # if state == 0:
+        #     angles['j_coxa_lf'] -= d
+        #     angles['j_coxa_rm'] += d
+        #     angles['j_coxa_lr'] -= d
+        #     angles['j_coxa_rf'] -= d
+        #     angles['j_coxa_lm'] += d
+        #     angles['j_coxa_rr'] -= d
+        # elif state == 1:
+        #     angles['j_coxa_lf'] -= d
+        #     angles['j_coxa_rm'] += d
+        #     angles['j_coxa_lr'] -= d
+        #     angles['j_coxa_rf'] -= d
+        #     angles['j_coxa_lm'] += d
+        #     angles['j_coxa_rr'] -= d
+        # else:
+        #     angles['j_coxa_lf'] += d
+        #     angles['j_coxa_rm'] -= d
+        #     angles['j_coxa_lr'] += d
+        #     angles['j_coxa_rf'] += d
+        #     angles['j_coxa_lm'] -= d
+        #     angles['j_coxa_rr'] += d
 
 
 class Walker:
     """Class for making a WORMS Hexapod walk"""
-    def __init__(self, darwin):
+    def __init__(self, darwin, n_phases=6):
         self.darwin = darwin
         self.running = False
 
         self.velocity = [0, 0, 0]
         self.walking = False
-        self.func = WFunc()
+        self.func = WFunc(n_phases=n_phases)
 
         # self.ready_pos=get_walk_angles(10)
         self.ready_pos = self.func.get(True, 0, [0, 0, 0])
@@ -249,6 +211,11 @@ class Walker:
 
         self._sub_cmd_vel = rospy.Subscriber(
             darwin.ns + "cmd_vel", Twist, self._cb_cmd_vel, queue_size=1)
+
+        self.n_phases = n_phases
+
+        # self._sub_cmd_angles = rospy.Subscriber(
+        #     darwin.ns + "cmd_angles", Twist, self._cb_cmd_vel, queue_size=1)
 
         # self.gait_state = None
 
@@ -297,7 +264,7 @@ class Walker:
         func = self.func
 
         # Global walk loop
-        n = 50
+        n = 500
         gait_state = 0
         i = 0
         self.current_velocity = [0, 0, 0]
@@ -309,18 +276,31 @@ class Walker:
                 # Do not move if nothing to do and already at 0
                 angles = func.get(0, 0, self.current_velocity)
                 self.update_velocity(self.velocity, n)
+                # rospy.loginfo('TEST!')
+                # angles['j_thigh_lm'] = -3.14
+                # angles['j_thigh_rm'] = -3.14
                 self.darwin.set_angles(angles)
                 r.sleep()
                 continue
 
             x = float(i) / n
             angles = func.get(gait_state, x, self.current_velocity)
+            # angles['j_thigh_lm'] = -3.14
+            # angles['j_thigh_rm'] = -3.14
+            # angles['j_shin_rr'] = 0
+            # angles['j_shin_lr'] = 0
+            # angles['j_shin_lm'] = 0
+            # angles['j_shin_rm'] = 0
+            # angles['j_shin_lf'] = 0.0
+            # angles['j_shin_rf'] = 0.0
+            # angles['j_thigh_lf'] = -3.14
+            # angles['j_thigh_rf'] = -3.14
             self.update_velocity(self.velocity, n)
             self.darwin.set_angles(angles)
             i += 1
             if i > n:
                 i = 0
-                gait_state = (gait_state + 1) % 3 # transition to next state (AKA phase)
+                gait_state = (gait_state + 1) % self.n_phases # transition to next state (AKA phase)
             r.sleep()
         rospy.loginfo('Finished walking thread')
 
