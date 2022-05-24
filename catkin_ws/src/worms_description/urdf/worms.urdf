@@ -206,7 +206,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -228,7 +228,7 @@
   </link>
   <link name="coxa_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -250,7 +250,7 @@
   </link>
   <link name="thigh_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -272,7 +272,7 @@
   </link>
   <link name="shin_rf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>
@@ -402,7 +402,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -424,7 +424,7 @@
   </link>
   <link name="coxa_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -446,7 +446,7 @@
   </link>
   <link name="thigh_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -468,7 +468,7 @@
   </link>
   <link name="shin_rm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>
@@ -598,7 +598,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -620,7 +620,7 @@
   </link>
   <link name="coxa_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -642,7 +642,7 @@
   </link>
   <link name="thigh_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -664,7 +664,7 @@
   </link>
   <link name="shin_rr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>
@@ -794,7 +794,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -816,7 +816,7 @@
   </link>
   <link name="coxa_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -838,7 +838,7 @@
   </link>
   <link name="thigh_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -860,7 +860,7 @@
   </link>
   <link name="shin_lf">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>
@@ -990,7 +990,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -1012,7 +1012,7 @@
   </link>
   <link name="coxa_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -1034,7 +1034,7 @@
   </link>
   <link name="thigh_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -1056,7 +1056,7 @@
   </link>
   <link name="shin_lm">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>
@@ -1186,7 +1186,7 @@
   <!-- <turnGravityOff>1</turnGravityOff> -->
   <link name="hip_structure_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 -0.15239999999999998 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.07619999999999999 0"/>
       <mass value="1"/>
       <inertia ixx="0.001999" ixy="0.000001" ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027"/>
     </inertial>
@@ -1208,7 +1208,7 @@
   </link>
   <link name="coxa_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.075 0"/>
       <mass value="1.35"/>
       <inertia ixx="0.003441" ixy="0.000110" ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627"/>
     </inertial>
@@ -1230,7 +1230,7 @@
   </link>
   <link name="thigh_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.135 0"/>
       <mass value="2.85"/>
       <inertia ixx="0.012495" ixy="0.000134" ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695"/>
     </inertial>
@@ -1252,7 +1252,7 @@
   </link>
   <link name="shin_lr">
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.225 0"/>
       <mass value="6.85"/>
       <inertia ixx="0.097990" ixy="0.0" ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765"/>
     </inertial>

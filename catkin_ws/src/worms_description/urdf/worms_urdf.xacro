@@ -24,6 +24,7 @@
 <xacro:property name="m_payload" value="15" />
 <xacro:property name="m_pallet" value="7" />
 <xacro:property name="m_motor" value="0.85" />
+<xacro:property name="m_hip_structure" value="0.41" />
 <xacro:property name="m_coxa" value="0.5" />
 <xacro:property name="m_thigh" value="2" />
 <xacro:property name="m_shin" value="6" />
@@ -289,7 +290,7 @@
 
   <link name="hip_structure_${suffix}">
     <inertial>
-      <origin xyz="0 -${hip_structure_length + uib_ee_gap_length} 0" rpy="0 0 0"  />
+      <origin xyz="0 -${(hip_structure_length + uib_ee_gap_length)/2} 0" rpy="0 0 0"  />
       <mass value="${m_uib}"/>
       <inertia ixx="0.001999"  ixy="0.000001"  ixz="0.000001" iyy="0.001386" iyz="0.000035" izz="0.002027" />
     </inertial>
@@ -313,7 +314,7 @@
 
   <link name="coxa_${suffix}">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <origin xyz="0 -${coxa_length/2} 0" rpy="0 0 0"  />
       <mass value="${m_coxa + m_motor}"/>
       <inertia ixx="0.003441"  ixy="0.000110"  ixz="-0.000001" iyy="0.000974" iyz="-0.000027" izz="0.003627" />
     </inertial>
@@ -337,7 +338,7 @@
 
   <link name="thigh_${suffix}">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <origin xyz="0 -${thigh_length/2} 0" rpy="0 0 0"  />
       <mass value="${m_thigh + m_motor}"/>
       <inertia ixx="0.012495"  ixy="0.000134"  ixz="0.000071" iyy="0.003683" iyz="0.004692" izz="0.009695" />
     </inertial>
@@ -361,7 +362,7 @@
 
   <link name="shin_${suffix}">
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"  />
+      <origin xyz="0 -${shin_length/2} 0" rpy="0 0 0"  />
       <mass value="${m_shin + m_motor}"/>
       <inertia ixx="0.097990"  ixy="0.0"  ixz="0.0" iyy="0.004706" iyz="0.0" izz="0.097765" />
     </inertial>

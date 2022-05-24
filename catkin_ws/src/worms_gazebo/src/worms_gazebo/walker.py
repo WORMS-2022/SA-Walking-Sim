@@ -5,6 +5,7 @@ import rospy
 import math
 from worms_gazebo.worms_hexapod import WORMS_Hexapod
 from geometry_msgs.msg import Twist
+import numpy as np
 
 
 jleg = ['j_coxa', 'j_thigh', 'j_shin']
@@ -28,8 +29,18 @@ class WJFunc:
         self.in_offset = 0
         self.in_scale = 1
 
-    def get(self, x):
+    def get(self, x, desired_angle=np.pi/4):
         """x between 0 and 1"""
+
+        # if not self.scale == 0:
+        #     angle = 0
+        #     if (x < 0.5):
+        #         angle = -desired_angle
+        #     else:
+        #         angle = 0
+        #     return angle
+        # else:
+        #     return 0
         f = math.sin(self.in_offset + self.in_scale * x)
         return self.offset + self.scale * f
 
@@ -57,7 +68,7 @@ class WFunc:
     def __init__(self, n_phases=6, **kwargs):
         self.parameters = {}
 
-        self.parameters['swing_scale'] = 5.0
+        self.parameters['swing_scale'] = 20.0
         self.parameters['vx_scale'] = 0.5
         self.parameters['vy_scale'] = 0.5
         self.parameters['vt_scale'] = 0.4
@@ -79,10 +90,9 @@ class WFunc:
         f2.scale = 0
 
         f3 = f1.clone()
-        f3.scale *= -1
+        f3.scale = 1
 
         f4 = f2.clone()
-        f3.scale *= -1
 
         zero = WJFunc()
         zero.scale = 0
@@ -90,7 +100,7 @@ class WFunc:
         self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)]
 
         self.set_func('j_thigh', f1, f2)
-        self.set_func('j_shin', f3, f4)
+        self.set_func('j_shin', zero, zero)
         self.set_func('j_coxa', zero, zero)
 
         # self.show()
@@ -279,6 +289,7 @@ class Walker:
                 # rospy.loginfo('TEST!')
                 # angles['j_thigh_lm'] = -3.14
                 # angles['j_thigh_rm'] = -3.14
+                angles['j_thigh_lr'] = -np.pi/2
                 self.darwin.set_angles(angles)
                 r.sleep()
                 continue
