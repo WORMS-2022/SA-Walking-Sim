@@ -18,8 +18,8 @@
   <link name="MP_BODY">
     <inertial>
       <origin rpy="0 0 1.57" xyz="0 0 1.0"/>
-      <mass value="7"/>
-      <inertia ixx="4.501530" ixy="0.000001" ixz=" -0.000005" iyy="4.501530" iyz="-0.000001" izz="8.711449"/>
+      <mass value="7.96891856"/>
+      <inertia ixx="0.63670162" ixy="0.000001" ixz=" -0.000005" iyy="0.63670162" iyz="-0.000001" izz="1.23183903"/>
     </inertial>
     <visual>
       <origin rpy="0 0 1.57" xyz="0 0 1.0"/>

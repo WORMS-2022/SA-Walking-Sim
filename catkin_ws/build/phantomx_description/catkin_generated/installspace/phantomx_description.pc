@@ -1,0 +1,8 @@
+prefix=/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install
+
+Name: phantomx_description
+Description: Description of phantomx_description
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -18,6 +18,7 @@ for j in jleg:
             z = j + "_" + side + s
             joints.append(z)
 
+# large list for all properties of joints
 hexapod_joints = joints
 
 
@@ -31,16 +32,6 @@ class WJFunc:
 
     def get(self, x, desired_angle=np.pi/4):
         """x between 0 and 1"""
-
-        # if not self.scale == 0:
-        #     angle = 0
-        #     if (x < 0.5):
-        #         angle = -desired_angle
-        #     else:
-        #         angle = 0
-        #     return angle
-        # else:
-        #     return 0
         f = math.sin(self.in_offset + self.in_scale * x)
         return self.offset + self.scale * f
 
@@ -65,13 +56,13 @@ class WJFunc:
 
 class WFunc:
     """Walk Function"""
-    def __init__(self, n_phases=6, **kwargs):
+    def __init__(self, n_phases=3, **kwargs):
         self.parameters = {}
 
         self.parameters['swing_scale'] = 20.0
         self.parameters['vx_scale'] = 0.5
         self.parameters['vy_scale'] = 0.5
-        self.parameters['vt_scale'] = 0.4
+        self.parameters['vt_scale'] = 0.4 # Currently not used
 
         for k, v in kwargs.items():
             self.parameters[k] = v
@@ -98,116 +89,51 @@ class WFunc:
         zero = WJFunc()
         zero.scale = 0
 
-        self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)]
+	# list of dictionaries. For each phase, provide a phase joint function
+        self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)] # f2 are basically 0's
 
-        self.set_func('j_thigh', f1, f2)
-        self.set_func('j_shin', f3, f2)
-        self.set_func('j_coxa', zero, zero)
+	# defines the desired motion for different parts of the leg
+        self.set_func('j_thigh', f1)
+        self.set_func('j_shin', f3)
+        self.set_func('j_coxa', zero)
 
         # self.show()
 
     # TODO: Refactor for easier change of leg sequencing
-    def set_func(self, joint, fp, fa):
-        for i, leg in enumerate(['lr', 'lm', 'lf', 'rr', 'rm', 'rf']):
-            self.pfn_list[i][joint + '_' + leg] = fp
+    def set_func(self, joint, fp):
+        for i, leg in enumerate(['r', 'm', 'f']):
+            for side in ['l', 'r']: 
+                self.pfn_list[i][joint + '_' + side + leg] = fp # gives desired func
 
-    def get(self, state, x, velocity):
+    def get(self, state, x, velocity): # state is interchangeable with phase
         """x between 0 and 1"""
+        """gets joint angles, based on velocity set earlier, determines the current angle"""
         angles = {}
         for j in hexapod_joints:
-                angles[j] = self.pfn_list[state][j].get(x)
+             angles[j] = self.pfn_list[state][j].get(x) # angles for thigh and shin
 
 
         rospy.loginfo(angles)
-        self.apply_velocity(angles, velocity, state, x)
+        self.apply_velocity(angles, velocity, state, x) # angles for coxa
         return angles
-
-    # def show(self):
-    #     for j in self.pfn_1.keys():
-    #         print(j, 'p1', self.pfn_1[j])
-
-    #     for j in self.pfn_2.keys():
-    #         print(j, 'p2', self.pfn_2[j])
-
-    #     for j in self.pfn_3.keys():
-    #         print(j, 'p3', self.pfn_3[j])
 
 
     def apply_velocity(self, angles, velocity, state, x):
-        pass
-
+        # applies precomputed velocity to the coxa joints to allow robot to move forward
         # VX - L forward-moving limbs are -d, R forward-moving limbs are +d
         v = velocity[0] * self.parameters['vx_scale']
         d = (x * 2 - 1) * v
-
-        for i, leg in enumerate(['lr', 'lm', 'lf', 'rr', 'rm', 'rf']):
-            if i == state:
-                if 'l' in leg:
-                    angles["j_coxa_" + leg] -= d
+        for i, leg in enumerate(['r', 'm', 'f']):
+            for side in ['l', 'r']:
+                if (i == state and side != 'l') or (i != state and side == 'l'):
+                    angles['j_coxa_' + (side + leg)]+=d
                 else:
-                    angles["j_coxa_" + leg] += d
-            else:
-                if 'l' in leg:
-                    angles["j_coxa_" + leg] += d
-                else:
-                    angles["j_coxa_" + leg] -= d
-
-        # VY
-        # v=velocity[1]*self.parameters["vy_scale"]
-        # d=(x)*v
-        # d2=(1-x)*v
-        # if v>=0:
-        #     if phase:
-        #         angles["j_thigh1_l"]-=d
-        #         angles["j_ankle2_l"]-=d
-        #         angles["j_thigh1_r"]+=d
-        #         angles["j_ankle2_r"]+=d
-        #     else:
-        #         angles["j_thigh1_l"]-=d2
-        #         angles["j_ankle2_l"]-=d2
-        #         angles["j_thigh1_r"]+=d2
-        #         angles["j_ankle2_r"]+=d2
-        # else:
-        #     if phase:
-        #         angles["j_thigh1_l"]+=d2
-        #         angles["j_ankle2_l"]+=d2
-        #         angles["j_thigh1_r"]-=d2
-        #         angles["j_ankle2_r"]-=d2
-        #     else:
-        #         angles["j_thigh1_l"]+=d
-        #         angles["j_ankle2_l"]+=d
-        #         angles["j_thigh1_r"]-=d
-        #         angles["j_ankle2_r"]-=d
-
-        # VT
-        # v = velocity[2] * self.parameters['vt_scale']
-        # d = (x * 2 - 1) * v
-        # if state == 0:
-        #     angles['j_coxa_lf'] -= d
-        #     angles['j_coxa_rm'] += d
-        #     angles['j_coxa_lr'] -= d
-        #     angles['j_coxa_rf'] -= d
-        #     angles['j_coxa_lm'] += d
-        #     angles['j_coxa_rr'] -= d
-        # elif state == 1:
-        #     angles['j_coxa_lf'] -= d
-        #     angles['j_coxa_rm'] += d
-        #     angles['j_coxa_lr'] -= d
-        #     angles['j_coxa_rf'] -= d
-        #     angles['j_coxa_lm'] += d
-        #     angles['j_coxa_rr'] -= d
-        # else:
-        #     angles['j_coxa_lf'] += d
-        #     angles['j_coxa_rm'] -= d
-        #     angles['j_coxa_lr'] += d
-        #     angles['j_coxa_rf'] += d
-        #     angles['j_coxa_lm'] -= d
-        #     angles['j_coxa_rr'] += d
+                    angles['j_coxa_' + (side + leg)]-=d
 
 
 class Walker:
     """Class for making a WORMS Hexapod walk"""
-    def __init__(self, darwin, n_phases=6):
+    def __init__(self, darwin, n_phases=3):
         self.darwin = darwin
         self.running = False
 
@@ -225,12 +151,8 @@ class Walker:
 
         self.n_phases = n_phases
 
-        # self._sub_cmd_angles = rospy.Subscriber(
-        #     darwin.ns + "cmd_angles", Twist, self._cb_cmd_vel, queue_size=1)
 
-        # self.gait_state = None
-
-    def _cb_cmd_vel(self, msg):
+    def _cb_cmd_vel(self, msg): # callback_command_velocity, send velocities to subscribers and tell them to start up
         """Catches cmd_vel and update walker speed"""
         print('cmdvel', msg)
         vx = msg.linear.x
@@ -243,13 +165,13 @@ class Walker:
         """If not there yet, go to initial walk position"""
         rospy.loginfo('Going to walk position')
         if self.get_dist_to_ready() > 0.02:
-            self.darwin.set_angles_slow(self.ready_pos)
+            self.darwin.set_angles_slow(self.ready_pos) # sets all angles to "zero", i.e. spawn angle
 
-    def start(self):
+    def start(self): # starts the process
         if not self.running:
             self.running = True
             self.init_walk()
-            self._th_walk = Thread(target=self._do_walk)
+            self._th_walk = Thread(target=self._do_walk) # starts a background process
             self._th_walk.start()
             self.walking = True
 
@@ -270,39 +192,29 @@ class Walker:
 
         Smoothly update velocity vectors and apply corresponding angles.
         """
-        r = rospy.Rate(100)
+        r = rospy.Rate(100) # unit is hertz
         rospy.loginfo('Started walking thread')
         func = self.func
 
         # Global walk loop
-        n = 50
-        gait_state = 0
-        i = 0
+        n = 50 # num of steps within a phase, somewhat like fps
+        gait_state = 0 # 0~2, the 3 phases
+        i = 0 # a counter for steps
         self.current_velocity = [0, 0, 0]
         while (not rospy.is_shutdown() and
                (self.walking or i < n or self.is_walking())):
             if not self.walking:
                 self.velocity = [0, 0, 0]
-            if not self.is_walking() and i == 0:
+            if not self.is_walking() and i == 0: # gets the robot to be stable when starting the simulation
                 # Do not move if nothing to do and already at 0
                 angles = func.get(0, 0, self.current_velocity)
                 self.update_velocity(self.velocity, n)
-                # rospy.loginfo('TEST!')
-                # angles['j_thigh_lm'] = -3.14
-                # angles['j_thigh_rm'] = -3.14
-                # angles['j_thigh_lr'] = -np.pi/2
                 self.darwin.set_angles(angles)
                 r.sleep()
                 continue
 
-            x = float(i) / n
-            angles = func.get(gait_state, x, self.current_velocity)
-            # angles['j_thigh_lm'] = -3.14
-            # angles['j_thigh_rm'] = -3.14
-            # angles['j_thigh_lr'] = -1.0
-            # angles['j_thigh_rr'] = -1.0
-            # angles['j_thigh_lf'] = -1.0
-            # angles['j_thigh_rf'] = -1.0
+            x = float(i) / n # a step in the sin curve
+            angles = func.get(gait_state, x, self.current_velocity) # gets the angle
             self.update_velocity(self.velocity, n)
             self.darwin.set_angles(angles)
             i += 1
