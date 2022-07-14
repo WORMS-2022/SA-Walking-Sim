@@ -1,0 +1,5 @@
+time,.header.seq,.header.stamp.secs,.header.stamp.nsecs,.header.frame_id,.level,.name,.msg,.file,.function,.line,.topics
+2022/07/14/10:53:57.190542,0,1657821237,165626589,,2,/record_1657821237120278992,Subscribing to /rosout_agg,/tmp/binarydeb/ros-noetic-rosbag-1.15.14/src/recorder.cpp,shared_ptr<ros::Subscriber> rosbag::Recorder::subscribe,255,['/rosout']
+2022/07/14/10:53:57.190912,1,1657821237,176158106,,2,/record_1657821237120278992,Subscribing to /rosout,/tmp/binarydeb/ros-noetic-rosbag-1.15.14/src/recorder.cpp,shared_ptr<ros::Subscriber> rosbag::Recorder::subscribe,255,['/rosout']
+2022/07/14/10:53:57.190929,2,1657821237,183519210,,2,/record_1657821237120278992,Recording to '2022-07-14-10-53-57.bag'.,/tmp/binarydeb/ros-noetic-rosbag-1.15.14/src/recorder.cpp,Recorder::startWriting,449,['/rosout']
+2022/07/14/10:53:57.190983,3,1657821237,186500615,,4,/record_1657821237120278992,Less than 5 x 1G of space free on disk with '2022-07-14-10-53-57.bag.active'.,/tmp/binarydeb/ros-noetic-rosbag-1.15.14/src/recorder.cpp,Recorder::checkDisk,771,['/rosout']

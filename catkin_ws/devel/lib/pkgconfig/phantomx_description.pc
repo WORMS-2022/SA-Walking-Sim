@@ -1,4 +1,4 @@
-prefix=/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/devel
+prefix=/home/worms/Desktop/SA-Walking-Sim/catkin_ws/devel
 
 Name: phantomx_description
 Description: Description of phantomx_description

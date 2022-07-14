@@ -1,8 +1,8 @@
-# Install script for directory: /home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/src/phantomx_gazebo
+# Install script for directory: /home/worms/Desktop/SA-Walking-Sim/catkin_ws/src/phantomx_gazebo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,21 +38,21 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/build/phantomx_gazebo/catkin_generated/safe_execute_install.cmake")
+  include("/home/worms/Desktop/SA-Walking-Sim/catkin_ws/build/phantomx_gazebo/catkin_generated/safe_execute_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazebo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazebo.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/phantomx_gazebo/cmake" TYPE FILE FILES
-    "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazeboConfig.cmake"
-    "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazeboConfig-version.cmake"
+    "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazeboConfig.cmake"
+    "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/build/phantomx_gazebo/catkin_generated/installspace/phantomx_gazeboConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/phantomx_gazebo" TYPE FILE FILES "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/src/phantomx_gazebo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/phantomx_gazebo" TYPE FILE FILES "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/src/phantomx_gazebo/package.xml")
 endif()
 

@@ -76,6 +76,10 @@ class WFunc:
         f1 = WJFunc()
         f1.in_scale = math.pi
         f1.scale = self.parameters['swing_scale']
+        
+        twicef1 = f1.clone()
+        twicef1.offset = -math.pi/6
+#        twicef1.scale = 1.1
 
         f2 = f1.clone()
         f2.scale = 0
@@ -83,6 +87,8 @@ class WFunc:
         f3 = f1.clone()
         f3.scale = 1
         f3.in_scale = -(np.pi + np.pi/4)
+        
+        twicef3 = f3.clone()
 
         f4 = f2.clone()
 
@@ -93,17 +99,26 @@ class WFunc:
         self.pfn_list = [{joint:f2 for joint in hexapod_joints} for j in range(self.n_phases)] # f2 are basically 0's
 
 	# defines the desired motion for different parts of the leg
-        self.set_func('j_thigh', f1)
-        self.set_func('j_shin', f3)
-        self.set_func('j_coxa', zero)
+        self.set_func('j_thigh', f1, twicef1)
+        self.set_func('j_shin', f3, twicef3)
+        self.set_func('j_coxa', zero, zero)
 
         # self.show()
 
     # TODO: Refactor for easier change of leg sequencing
-    def set_func(self, joint, fp):
-        for i, leg in enumerate(['r', 'm', 'f']):
-            for side in ['l', 'r']: 
-                self.pfn_list[i][joint + '_' + side + leg] = fp # gives desired func
+    def set_func(self, joint, fp, twicefp):
+    	# lf and rr
+    	self.pfn_list[0][joint + '_lf'] = twicefp
+    	self.pfn_list[0][joint + '_rr'] = fp
+    	# lm and rm
+    	self.pfn_list[1][joint + '_lm'] = fp
+    	self.pfn_list[1][joint + '_rm'] = fp
+    	# lr and rf
+    	self.pfn_list[2][joint + '_lr'] = fp
+    	self.pfn_list[2][joint + '_rf'] = twicefp
+#        for i, leg in enumerate(['r', 'm', 'f']):
+#            for side in ['l', 'r']: 
+#                self.pfn_list[i][joint + '_' + side + leg] = fp # gives desired func
 
     def get(self, state, x, velocity): # state is interchangeable with phase
         """x between 0 and 1"""
@@ -123,12 +138,36 @@ class WFunc:
         # VX - L forward-moving limbs are -d, R forward-moving limbs are +d
         v = velocity[0] * self.parameters['vx_scale']
         d = (x * 2 - 1) * v
-        for i, leg in enumerate(['r', 'm', 'f']):
-            for side in ['l', 'r']:
-                if (i == state and side != 'l') or (i != state and side == 'l'):
-                    angles['j_coxa_' + (side + leg)]+=d
-                else:
-                    angles['j_coxa_' + (side + leg)]-=d
+#        print('d ----> ' + str(d))
+        if d != 0:
+            amp = (10 * math.cos(math.pi / 6))
+            if state == 0:
+                angles['j_coxa_lr']-=d 
+                angles['j_coxa_rf']+=d
+#            angles['j_coxa_lm']+=d
+#            angles['j_coxa_lf']-=d 
+#            angles['j_coxa_rm']-=d
+#            angles['j_coxa_rr']+=d 
+            elif state == 1:
+                angles['j_coxa_lm']-=d 
+                angles['j_coxa_rm']+=d 
+#            angles['j_coxa_lr']+=d 
+#            angles['j_coxa_lf']+=d 
+#            angles['j_coxa_rr']-=d 
+#            angles['j_coxa_rf']-=d 
+            elif state == 2:
+                angles['j_coxa_lf']-=d 
+                angles['j_coxa_rr']+=d 
+#            angles['j_coxa_lr']-=d 
+#            angles['j_coxa_lm']+=d
+#            angles['j_coxa_rm']-=d
+#            angles['j_coxa_rf']+=d 
+#        for i, leg in enumerate(['r', 'm', 'f']):
+#            for side in ['l', 'r']:
+#                if (i == state and side != 'l') or (i != state and side == 'l'):
+#                    angles['j_coxa_' + (side + leg)]+=d
+#                else:
+#                    angles['j_coxa_' + (side + leg)]-=d
 
 
 class Walker:
@@ -201,6 +240,7 @@ class Walker:
         gait_state = 0 # 0~2, the 3 phases
         i = 0 # a counter for steps
         self.current_velocity = [0, 0, 0]
+        cyc_count = 0 ##
         while (not rospy.is_shutdown() and
                (self.walking or i < n or self.is_walking())):
             if not self.walking:
@@ -214,13 +254,21 @@ class Walker:
                 continue
 
             x = float(i) / n # a step in the sin curve
+            ori_gait_state = gait_state
+            if cyc_count % 6 == 3 or cyc_count % 6 == 5:
+                if gait_state == 0:
+                    gait_state = 2
+                elif gait_state == 2:
+                    gait_state = 0
             angles = func.get(gait_state, x, self.current_velocity) # gets the angle
+            gait_state = ori_gait_state
             self.update_velocity(self.velocity, n)
             self.darwin.set_angles(angles)
             i += 1
             if i > n:
                 i = 0
                 gait_state = (gait_state + 1) % self.n_phases # transition to next state (AKA phase)
+            cyc_count += 1 ##
             r.sleep()
         rospy.loginfo('Finished walking thread')
 
@@ -290,7 +338,7 @@ if __name__ == '__main__':
 
     rospy.sleep(0.5)
 
-    robot.set_walk_velocity(0, 0, 0)
+    robot.set_walk_velocity(1, 0, 0)
 
     rospy.loginfo('Walker Ready')
     while not rospy.is_shutdown():

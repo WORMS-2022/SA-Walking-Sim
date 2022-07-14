@@ -1,2 +1,2 @@
-phantomx_control:phantomx_description:phantomx_gazebo:worms_control:worms_description:worms_gazebo
--DCATKIN_DEVEL_PREFIX=/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install -G Unix Makefiles
+phantomx_control:phantomx_description:phantomx_gazebo:rosbag_to_csv:worms_control:worms_description:worms_gazebo
+-DCATKIN_DEVEL_PREFIX=/home/worms/Desktop/SA-Walking-Sim/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/worms/Desktop/SA-Walking-Sim/catkin_ws/install -G Unix Makefiles

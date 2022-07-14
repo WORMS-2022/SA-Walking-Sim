@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "worms_gazebo"
-PROJECT_SPACE_DIR = "/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install"
+PROJECT_SPACE_DIR = "/home/worms/Desktop/SA-Walking-Sim/catkin_ws/install"
 PROJECT_VERSION = "0.0.0"

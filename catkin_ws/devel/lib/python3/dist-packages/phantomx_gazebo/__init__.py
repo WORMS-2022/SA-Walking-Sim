@@ -6,7 +6,7 @@ from os import path as os_path
 from pkgutil import extend_path
 from sys import path as sys_path
 
-__extended_path = '/home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/src/phantomx_gazebo/src'.split(';')
+__extended_path = '/home/worms/Desktop/SA-Walking-Sim/catkin_ws/src/phantomx_gazebo/src'.split(';')
 for p in reversed(__extended_path):
     sys_path.insert(0, p)
     del p

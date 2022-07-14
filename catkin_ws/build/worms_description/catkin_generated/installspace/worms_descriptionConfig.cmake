@@ -67,14 +67,14 @@ set(worms_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(worms_description_SOURCE_PREFIX /home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/src/worms_description)
-  set(worms_description_DEVEL_PREFIX /home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/devel)
+  set(worms_description_SOURCE_PREFIX /home/worms/Desktop/SA-Walking-Sim/catkin_ws/src/worms_description)
+  set(worms_description_DEVEL_PREFIX /home/worms/Desktop/SA-Walking-Sim/catkin_ws/devel)
   set(worms_description_INSTALL_PREFIX "")
   set(worms_description_PREFIX ${worms_description_DEVEL_PREFIX})
 else()
   set(worms_description_SOURCE_PREFIX "")
   set(worms_description_DEVEL_PREFIX "")
-  set(worms_description_INSTALL_PREFIX /home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install)
+  set(worms_description_INSTALL_PREFIX /home/worms/Desktop/SA-Walking-Sim/catkin_ws/install)
   set(worms_description_PREFIX ${worms_description_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/worms/Desktop/Worms_2-legged/SA-Walking-Sim-d1eee7d6278811e94045d7ec845db312943924e8/catkin_ws/install/lib;/opt/ros/noetic/lib)
+    foreach(path /home/worms/Desktop/SA-Walking-Sim/catkin_ws/install/lib;/home/worms/Desktop/SA-Walking-Sim/catkin_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
