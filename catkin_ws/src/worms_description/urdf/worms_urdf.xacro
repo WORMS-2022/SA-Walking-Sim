@@ -83,14 +83,14 @@
 
 <!-- RPY are set to offset the UIB (first component in leg from the pallet) by 90 degrees then by the angle to match the hexagon -->
 <!-- TODO: Replace xyz with calculations based on hexagon diameter -->
-    <xacro:leg_l xyz="0.476 -0.2748 ${initial_z_offset}"  rpy="0 0 ${-0.52 + 1.57}" suffix="rf"/>
+    <xacro:leg_l xyz="0.476 -0.2748 ${initial_z_offset}"  rpy="0 0 ${-0.52 + 1.57 - 1.05}" suffix="rf"/>
     <xacro:leg_l xyz="0.0000 -0.5497 ${initial_z_offset}"  rpy="0 0 ${-1.57 + 1.57}" suffix="rm"/>
-    <xacro:leg_l xyz="-0.476 -0.2748 ${initial_z_offset}"  rpy="0 0 ${-1.57 -1.04 + 1.57}" suffix="rr"/>
+    <xacro:leg_l xyz="-0.476 -0.2748 ${initial_z_offset}"  rpy="0 0 ${-1.57 -1.04 + 1.57 + 1.05}" suffix="rr"/>
 
 
-    <xacro:leg_l xyz="0.476 0.2748 ${initial_z_offset}"  rpy="0 0 ${0.52 + 1.57}" suffix="lf"/>
+    <xacro:leg_l xyz="0.476 0.2748 ${initial_z_offset}"  rpy="0 0 ${0.52 + 1.57 + 1.05}" suffix="lf"/>
     <xacro:leg_l xyz="0.0000 0.5497 ${initial_z_offset}"  rpy="0 0 ${1.57 + 1.57}" suffix="lm"/>
-    <xacro:leg_l xyz="-0.476 0.2748 ${initial_z_offset}"  rpy="0 0 ${1.57 + 1.04 + 1.57}" suffix="lr"/>
+    <xacro:leg_l xyz="-0.476 0.2748 ${initial_z_offset}"  rpy="0 0 ${1.57 + 1.04 + 1.57 - 1.05}" suffix="lr"/>
 
 </xacro:macro>
 

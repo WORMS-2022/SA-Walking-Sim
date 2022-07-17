@@ -318,7 +318,7 @@
   <joint name="j_hip_structure_rf" type="fixed">
     <parent link="MP_BODY"/>
     <child link="hip_structure_rf"/>
-    <origin rpy="0 0 1.05" xyz="0.476 -0.2748 1.0"/>
+    <origin rpy="0 0 0.0" xyz="0.476 -0.2748 1.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -710,7 +710,7 @@
   <joint name="j_hip_structure_rr" type="fixed">
     <parent link="MP_BODY"/>
     <child link="hip_structure_rr"/>
-    <origin rpy="0 0 -1.0400000000000003" xyz="-0.476 -0.2748 1.0"/>
+    <origin rpy="0 0 0.009999999999999787" xyz="-0.476 -0.2748 1.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -906,7 +906,7 @@
   <joint name="j_hip_structure_lf" type="fixed">
     <parent link="MP_BODY"/>
     <child link="hip_structure_lf"/>
-    <origin rpy="0 0 2.09" xyz="0.476 0.2748 1.0"/>
+    <origin rpy="0 0 3.1399999999999997" xyz="0.476 0.2748 1.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
@@ -1298,7 +1298,7 @@
   <joint name="j_hip_structure_lr" type="fixed">
     <parent link="MP_BODY"/>
     <child link="hip_structure_lr"/>
-    <origin rpy="0 0 4.180000000000001" xyz="-0.476 0.2748 1.0"/>
+    <origin rpy="0 0 3.130000000000001" xyz="-0.476 0.2748 1.0"/>
     <axis xyz="1 0 0"/>
     <limit effort="2.8" lower="-2.6179939" upper="2.6179939" velocity="5.6548668"/>
   </joint>
