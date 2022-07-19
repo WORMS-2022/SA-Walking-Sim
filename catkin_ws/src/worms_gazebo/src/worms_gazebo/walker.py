@@ -26,7 +26,7 @@ class WJFunc:
     """Walk Joint Function"""
     def __init__(self):
         self.offset = 0
-        self.scale = 1
+        self.scale = 2
         self.in_offset = 0
         self.in_scale = 1
 
@@ -242,14 +242,14 @@ class Walker:
             self.running = False
 
     def set_velocity(self, x, y, t):
-        self.velocity = [x, y, t]
+        self.velocity = [2 * x, y, t]
 
     def _do_walk(self):
         """Main walking loop
 
         Smoothly update velocity vectors and apply corresponding angles.
         """
-        r = rospy.Rate(100) # unit is hertz
+        r = rospy.Rate(200) # unit is hertz
         rospy.loginfo('Started walking thread')
         func = self.func
 
@@ -282,6 +282,7 @@ class Walker:
 #                gait_state = (gait_state + 1) % self.n_phases # transition to next state (AKA phase)
                 cyc_count += 1 ##
                 gait_state = gait_state_dict[cyc_count % 8]
+                print(cyc_count)
                 r.sleep()
             r.sleep()
         rospy.loginfo('Finished walking thread')
@@ -352,7 +353,7 @@ if __name__ == '__main__':
 
     rospy.sleep(0.5)
 
-    robot.set_walk_velocity(1, 0, 0)
+    robot.set_walk_velocity(0, 0, 0)
 
     rospy.loginfo('Walker Ready')
     while not rospy.is_shutdown():

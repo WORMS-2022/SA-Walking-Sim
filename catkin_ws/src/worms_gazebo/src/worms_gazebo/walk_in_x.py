@@ -13,12 +13,9 @@ if __name__ == '__main__':
 
     rospy.loginfo('Walk in x-dir Starting')
 
-    robot.set_walk_velocity(1, 0, 0)
-    rospy.sleep(15)
-    robot.set_walk_velocity(1, 0, 0)
-    rospy.sleep(15)
-    robot.set_walk_velocity(1, 0, 0)
-    rospy.sleep(15)
+    for i in range (2):
+        robot.set_walk_velocity(1, 0, 0)
+        rospy.sleep(15)
     robot.set_walk_velocity(0, 0, 0)
 
     rospy.loginfo('Walk in x-dir Finished')
